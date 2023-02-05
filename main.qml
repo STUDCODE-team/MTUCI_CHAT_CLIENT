@@ -1,9 +1,20 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
+import QtQuick.Controls 2.15
 
-Window {
-    width: 640
-    height: 480
+ApplicationWindow {
+    id: _mainWindow
+    width: 900
+    height: 600
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("MTUCI Chat")
+
+
+    StackView {
+        id: _stackView
+        anchors.fill: parent
+        initialItem: ContactPage {}
+
+    }
+
 }
