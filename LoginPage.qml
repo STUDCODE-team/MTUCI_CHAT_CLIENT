@@ -19,20 +19,21 @@ Page {
 
 
         ColumnLayout {
-
-
             anchors.centerIn: parent
 
             Image {
 
             }
 
-            InputLogin {
-                id: _loginRect
+            InputField {
+                id: _loginInput
+                placeHolder: "Логин"
             }
 
-            InputLogin {
-
+            InputField {
+                id: _login
+                placeHolder: "Пароль"
+                isPassword: true
             }
         }
     }

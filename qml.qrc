@@ -4,6 +4,6 @@
         <file>ContactPage.qml</file>
         <file>ConversationPage.qml</file>
         <file>LoginPage.qml</file>
-        <file>InputLogin.qml</file>
+        <file>InputField.qml</file>
     </qresource>
 </RCC>
