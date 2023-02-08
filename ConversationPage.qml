@@ -7,13 +7,14 @@ Page {
 
     property string inConversationWith
 
-    header: ToolBar {
+    header: Label {
         ToolButton {
             text: qsTr("Back")
             anchors.left: parent.left
             anchors.leftMargin: 10
             anchors.verticalCenter: parent.verticalCenter
             onClicked: _root.StackView.view.pop()
+            topPadding: 20
 
         }
 
@@ -22,9 +23,8 @@ Page {
             text: inConversationWith
             font.pixelSize: 20
             anchors.centerIn: parent
+            topPadding: 20
         }
     }
-
-
 
 }

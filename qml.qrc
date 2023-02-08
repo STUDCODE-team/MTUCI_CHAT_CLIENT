@@ -3,5 +3,7 @@
         <file>main.qml</file>
         <file>ContactPage.qml</file>
         <file>ConversationPage.qml</file>
+        <file>LoginPage.qml</file>
+        <file>InputLogin.qml</file>
     </qresource>
 </RCC>

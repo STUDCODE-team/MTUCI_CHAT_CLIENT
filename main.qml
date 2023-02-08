@@ -9,12 +9,21 @@ ApplicationWindow {
     visible: true
     title: qsTr("MTUCI Chat")
 
-
-    StackView {
-        id: _stackView
-        anchors.fill: parent
-        initialItem: ContactPage {}
+    ContactPage {
 
     }
+
+    LoginPage {
+
+    }
+
+
+
+//    StackView {
+//        id: _stackView
+//        anchors.fill: parent
+//        initialItem: ContactPage {}
+
+//    }
 
 }

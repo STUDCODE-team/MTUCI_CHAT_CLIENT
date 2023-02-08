@@ -4,11 +4,12 @@ import QtQuick.Controls 2.15
 
 Page {
     anchors.fill: parent
-    header: ToolBar {
+    header: Label {
         Label {
             text: qsTr("Contacts")
             font.pixelSize: 20
             anchors.centerIn: parent
+            topPadding: 20
         }
     }
 
@@ -19,6 +20,7 @@ Page {
         leftMargin: 48
         bottomMargin: 48
         rightMargin: 48
+
 
         spacing: 20
         model: ["Игнатий Глушков", "Александр Плешаков", "Арсений Смирнов", "Александр Чернов"]
