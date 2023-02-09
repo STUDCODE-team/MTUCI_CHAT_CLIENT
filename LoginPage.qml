@@ -52,12 +52,15 @@ Page {
             InputField {
                 id: _loginInput
                 placeHolder: "Логин"
+                Layout.bottomMargin: 5
+
             }
 
             InputField {
                 id: _login
                 placeHolder: "Пароль"
                 isPassword: true
+                Layout.bottomMargin: 16
             }
 
             SetButton {
