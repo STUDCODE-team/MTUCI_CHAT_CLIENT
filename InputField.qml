@@ -12,12 +12,12 @@ Rectangle {
     height: rectangleHeight
     radius: rectangleRadius
     border.color: borderLoginColor
-    border.width: 2
+    border.width: 0
     clip: true
+    color: "#4C5DF1"
 
     TextField {
         id: input
-
         anchors{
             fill: parent
             topMargin: 3

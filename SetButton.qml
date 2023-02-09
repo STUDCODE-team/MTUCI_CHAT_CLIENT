@@ -22,13 +22,15 @@ Item {
 
         anchors.fill: parent
         radius: _loginItem.radius
-        color: _buttonMouseArea.containsPress ? Qt.darker(_loginItem.buttonColor, 1.2) : _loginItem.buttonColor
+        color: _buttonMouseArea.containsPress ?
+                   Qt.darker(_loginItem.buttonColor, 1.2) : _loginItem.buttonColor
 
         Text {
             id: _loginButtonText
 
             text: _loginItem.text
-            color: _buttonMouseArea.containsPress ? Qt.darker(_loginItem.textColor, 1.2) : _loginItem.textColor
+            color: _buttonMouseArea.containsPress ?
+                       Qt.darker(_loginItem.textColor, 1.2) : _loginItem.textColor
             anchors.centerIn: parent
         }
 
@@ -40,8 +42,6 @@ Item {
             onClicked: {
                 _loginItem.clicked()
             }
-
-
         }
 
     }
