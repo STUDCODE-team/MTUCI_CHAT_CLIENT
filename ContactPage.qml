@@ -34,7 +34,7 @@ Page {
             Image {
                 id: _avatar
                 //source: "qrc:/img/" + modelData.replace(" ", "_") + ".png"
-                source: "qrc:/person.png"
+                source: "qrc:/img/person.png"
             }
 
         }
