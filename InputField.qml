@@ -8,9 +8,9 @@ Rectangle {
     property string placeHolder : ""
     property bool isPassword: false
 
-    width: 280
-    height: 30
-    radius: 12
+    width: rectangleWith
+    height: rectangleHeight
+    radius: rectangleRadius
     border.color: borderLoginColor
     border.width: 2
     clip: true
@@ -22,8 +22,9 @@ Rectangle {
             fill: parent
             topMargin: 3
             bottomMargin: 3
+            leftMargin: 5
         }
-        echoMode: isPassword? TextInput.Password : TextInput.Normal
+        echoMode: isPassword ? TextInput.Password : TextInput.Normal
 
         placeholderText: placeHolder
         placeholderTextColor: borderLoginColor

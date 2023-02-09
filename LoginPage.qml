@@ -9,7 +9,9 @@ Page {
     readonly property color loginPageColor: "#4C5DF1"
     readonly property color borderLoginColor: "#00D6C9"
 
-
+    property int rectangleWith: 280
+    property int rectangleHeight: 30
+    property int rectangleRadius: 12
 
     anchors.fill: parent
 
@@ -35,6 +37,12 @@ Page {
                 placeHolder: "Пароль"
                 isPassword: true
             }
+
+            SetButton {
+                text: "Войти"
+
+            }
+
         }
     }
 
