@@ -6,5 +6,6 @@
         <file>LoginPage.qml</file>
         <file>InputField.qml</file>
         <file>SetButton.qml</file>
+        <file>MTUCI_Icon.qml</file>
     </qresource>
 </RCC>

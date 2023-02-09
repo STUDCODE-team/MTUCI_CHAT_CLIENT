@@ -28,46 +28,49 @@ Page {
                 GradientStop{position: 1.0; color: "#2636C5"}
             }
         }
-
         ColumnLayout {
             anchors.centerIn: parent
-            Item{
-                width: 130
-                height: 130
+            MTUCI_Icon {
                 Layout.alignment: ColumnLayout.Center
-                Image {
-                    id: icon
-                    anchors.fill: parent
-                    source: "qrc:/img/icon.png"
-                    smooth: true
-                }
-                FastBlur{
-                    anchors.fill: icon
-                    source: icon
-                    radius: 3
-                }
+                height: 130
+                width: 130
             }
-
-
             InputField {
-                id: _loginInput
+                id: login
                 placeHolder: "Логин"
                 Layout.bottomMargin: 5
-
             }
-
             InputField {
-                id: _login
+                id: password
                 placeHolder: "Пароль"
                 isPassword: true
                 Layout.bottomMargin: 16
             }
-
             SetButton {
+                id: loginButton
                 text: "Войти"
-
+                onClicked: {
+                    //loginButton.startLoading() // process animation startes
+                    //backend.tryLogin(login.text, password.text)
+                }
             }
-
+//            Connections{
+//                target: backend
+//                function onLoginSuccess() {
+//                    loginButton.stopLoading()
+//                    login.clear()
+//                    password.clear()
+//                    main.renderMessangerInterface();
+//                }
+//                function onLoginFailed() {
+//                    loginButton.stopLoading()
+//                    errorMessage.showFailedData()
+//                }
+//                function onServerUnreachable() {
+//                    loginButton.stopLoading()
+//                    errorMessage.showServerUnreachable()
+//                }
+//            }
         }
     }
 
