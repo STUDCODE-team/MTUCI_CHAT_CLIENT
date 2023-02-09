@@ -13,23 +13,20 @@ Rectangle {
     radius: rectangleRadius
     border.color: borderLoginColor
     border.width: 0
-    clip: true
     color: "#4C5DF1"
 
     TextField {
         id: input
         anchors{
             fill: parent
-            topMargin: 3
-            bottomMargin: 3
             leftMargin: 5
         }
+        verticalAlignment: TextField.AlignVCenter
         echoMode: isPassword ? TextInput.Password : TextInput.Normal
-
+        font.pointSize: 16
         placeholderText: placeHolder
-        placeholderTextColor: borderLoginColor
+        color: borderLoginColor
 
-        color: "black"
         background: Item{}
     }
 

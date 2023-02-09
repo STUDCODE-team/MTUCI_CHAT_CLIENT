@@ -22,7 +22,7 @@ Page {
             anchors.fill: parent
             source: parent
             start: Qt.point(0,0)
-            end: Qt.point(200, 300)
+            end: Qt.point(parent.width, parent.height)
             gradient: Gradient{
                 GradientStop{position: 0.0; color: "#515DC7"}
                 GradientStop{position: 1.0; color: "#2636C5"}
