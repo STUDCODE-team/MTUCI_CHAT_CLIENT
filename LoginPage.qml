@@ -51,12 +51,12 @@ Page {
                 text: "Войти"
                 onClicked: {
                     //loginButton.startLoading() // process animation startes
-                    //backend.tryLogin(login.text, password.text)
+                    //backend.Login(login.text, password.text)
                 }
             }
 //            Connections{
 //                target: backend
-//                function onLoginSuccess() {
+//                function onLoginSucceed() {
 //                    loginButton.stopLoading()
 //                    login.clear()
 //                    password.clear()

@@ -9,21 +9,30 @@ ApplicationWindow {
     visible: true
     title: qsTr("MTUCI Chat")
 
-    ContactPage {
-
+    ///
+    ///\brief loadLastSession
+    /// Функция вызывается при запуске приложения. Проверяет, был ли авторизован пользователь.
+    /// Если на устройстве сохранен кэш от прошлого сеанса, то он будет загружен.
+    /// Для получения пакетов в будет произведена неявная авторизация.
+    ///\return
+    ///
+    function loadLastSession(){
+        var loginPage = loginPageComponent.createObject(this)
+        if(backend.isLastSessionSaved()){
+            var chatInterface = chatInterfaceComponent.createObject(this)
+            chatInterface.init(backend.getLastSession())
+            backend.implicitLogin();
+        }
     }
-
-    LoginPage {
-
+    Component.onCompleted: {
+        loadLastSession()
     }
-
-
-
-//    StackView {
-//        id: _stackView
-//        anchors.fill: parent
-//        initialItem: ContactPage {}
-
-//    }
-
+    Component {
+        id: loginPageComponent
+        LoginPage {}
+    }
+    Component {
+        id: chatInterfaceComponent
+        ContactPage {}
+    }
 }

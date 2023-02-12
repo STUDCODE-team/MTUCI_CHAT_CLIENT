@@ -4,6 +4,9 @@ import QtQuick.Controls 2.15
 
 Page {
     anchors.fill: parent
+    function init(sessionInfo){
+        console.log("[init session]", sessionInfo)
+    }
     header: Label {
         Label {
             text: qsTr("Contacts")
