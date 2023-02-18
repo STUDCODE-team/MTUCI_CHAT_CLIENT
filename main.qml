@@ -17,13 +17,23 @@ ApplicationWindow {
     ///\return
     ///
     function loadLastSession(){
-        var loginPage = loginPageComponent.createObject(this)
+        mainpageLoader.sourceComponent = loginPageComponent;
+
         if(backend.isLastSessionSaved()){
-            var chatInterface = chatInterfaceComponent.createObject(this)
-            chatInterface.init(backend.getLastSession())
+            mainpageLoader.sourceComponent = chatInterfaceComponent;
+            mainpageLoader.item.init(backend.getLastSession());
             backend.implicitLogin();
         }
     }
+    function enterChatInterface(){
+        mainpageLoader.sourceComponent = chatInterfaceComponent;
+    }
+
+    Loader{
+        anchors.fill: parent
+        id: mainpageLoader
+    }
+
     Component.onCompleted: {
         loadLastSession()
     }

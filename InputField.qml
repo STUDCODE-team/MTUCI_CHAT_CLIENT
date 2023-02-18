@@ -7,6 +7,7 @@ Rectangle {
     id: _rect
     property string placeHolder : ""
     property bool isPassword: false
+    readonly property string text: input.text
 
     width: rectangleWith
     height: rectangleHeight

@@ -51,31 +51,34 @@ Page {
                 text: "Войти"
                 onClicked: {
                     //loginButton.startLoading() // process animation startes
-                    //backend.Login(login.text, password.text)
+                    backend.login(login.text, password.text)
                 }
             }
-//            Connections{
-//                target: backend
-//                function onLoginSucceed() {
+            Text{
+                id: errText
+                visible: false
+                color: "red"
+                text: "Неверный логин или пароль"
+            }
+
+            Connections{
+                target: backend
+                function onLoginSucceed() {
 //                    loginButton.stopLoading()
-//                    login.clear()
-//                    password.clear()
-//                    main.renderMessangerInterface();
-//                }
-//                function onLoginFailed() {
+
+                    _mainWindow.enterChatInterface();
+                }
+                function onLoginFailed() {
 //                    loginButton.stopLoading()
 //                    errorMessage.showFailedData()
-//                }
-//                function onServerUnreachable() {
+
+                    errText.visible = true
+                }
+                function onServerUnreachable() {
 //                    loginButton.stopLoading()
-//                    errorMessage.showServerUnreachable()
-//                }
-//            }
+                    errorMessage.showServerUnreachable()
+                }
+            }
         }
     }
-
-
-
-
-
 }
