@@ -60,7 +60,6 @@ Page {
                 color: "red"
                 text: "Неверный логин или пароль"
             }
-
             Connections{
                 target: backend
                 function onLoginSucceed() {
@@ -71,7 +70,6 @@ Page {
                 function onLoginFailed() {
 //                    loginButton.stopLoading()
 //                    errorMessage.showFailedData()
-
                     errText.visible = true
                 }
                 function onServerUnreachable() {

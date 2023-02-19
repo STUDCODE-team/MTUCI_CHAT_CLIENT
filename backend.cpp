@@ -6,6 +6,5 @@ Backend::Backend()
     connect(&client, &TcpClient::loginFailed, this, &Backend::loginFailed);
 
     client.connectToHost("localhost", "30391");
-
 }
 

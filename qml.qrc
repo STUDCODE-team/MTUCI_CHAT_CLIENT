@@ -7,5 +7,6 @@
         <file>InputField.qml</file>
         <file>SetButton.qml</file>
         <file>MTUCI_Icon.qml</file>
+        <file>SeparatorLine.qml</file>
     </qresource>
 </RCC>
