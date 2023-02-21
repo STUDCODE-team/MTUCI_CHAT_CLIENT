@@ -7,12 +7,18 @@ Rectangle {
     id: _rect
     property string placeHolder : ""
     property bool isPassword: false
+    property int inputWidth: 280
+    property int inputHeight: 30
+    property int inputRadius: 12
+
+    readonly property color borderColor: "#00D6C9"
+
     readonly property string text: input.text
 
-    width: rectangleWith
-    height: rectangleHeight
-    radius: rectangleRadius
-    border.color: borderLoginColor
+    width: inputWidth
+    height: inputHeight
+    radius: inputRadius
+    border.color: borderColor
     border.width: 0
     color: "#4C5DF1"
 
@@ -26,7 +32,7 @@ Rectangle {
         echoMode: isPassword ? TextInput.Password : TextInput.Normal
         font.pointSize: 16
         placeholderText: placeHolder
-        color: borderLoginColor
+        color: borderColor
 
         background: Item{}
     }
