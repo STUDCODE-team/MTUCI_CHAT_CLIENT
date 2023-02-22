@@ -58,32 +58,10 @@ Rectangle {
         id: chatsModel
 
         ListElement {
-            texts: [
-                ListElement { text: "Игнатий Глушков" },
-                ListElement { text: "Последнее сообщение" }
-            ]
-            text: "02:29"
-        }
-        ListElement {
-            texts: [
-                ListElement { text: "Игнатий Глушков" },
-                ListElement { text: "Последнее сообщение" }
-            ]
-            text: "02:29"
-        }
-        ListElement {
-            texts: [
-                ListElement { text: "Игнатий Глушков" },
-                ListElement { text: "Последнее сообщение" }
-            ]
-            text: "02:29"
-        }
-        ListElement {
-            texts: [
-                ListElement { text: "Игнатий Глушков" },
-                ListElement { text: "Последнее сообщение" }
-            ]
-            text: "02:29"
+            userAvatarPath: "/img/personVK.png"
+            userName: "Игнатий Глушков"
+            lastMessage: "Последнее сообщение"
+            time: "02:29"
         }
     }
 
@@ -99,7 +77,7 @@ Rectangle {
 
         highlight: Rectangle {
             color: "white"
-            opacity: 0.07
+            opacity: 0.04
         }
         highlightFollowsCurrentItem: true
 
@@ -114,59 +92,46 @@ Rectangle {
             width: parent.width
             height: 50
 
-            Rectangle {
+            Image {
+                id: useravatar
+
+                source: userAvatarPath
+
+                anchors.verticalCenter: parent.verticalCenter
+                anchors.left: parent.left
+                anchors.leftMargin: 18
+
+            }
+            Text {
+                text: userName
+                color: "white"
+                anchors.left: useravatar.right
+                anchors.top: parent.top
+                anchors.leftMargin: 10
+                anchors.topMargin: 10
+            }
+            Text {
+                text: lastMessage
+                color: "white"
+                opacity: 0.7
+                font.pointSize: 10
+                anchors.left: useravatar.right
+                anchors.top: parent.top
+                anchors.leftMargin: 10
+                anchors.topMargin: 30
+            }
+            Text {
+                text: time
+                color: "white"
+                anchors.top: parent.top
+                anchors.topMargin: 10
+                anchors.right: parent.right
+                anchors.rightMargin: 10
+                font.pointSize: 11
+            }
+            MouseArea {
                 anchors.fill: parent
-
-                color: "transparent"
-
-                Image {
-                    id: useravatar
-
-                    source: "/img/personVK.png"
-
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.left: parent.left
-                    anchors.leftMargin: 18
-
-                }
-
-                Text {
-                    text: model.text
-                    color: "white"
-                    opacity: 0.7
-                    font.pointSize: 10
-
-                    anchors.right: parent.right
-                    anchors.top: parent.top
-                    anchors.rightMargin: 18
-                    anchors.topMargin: 8
-
-                }
-
-                Column {
-                    id: userName
-
-                    anchors.top: parent.top
-                    anchors.left: useravatar.right
-                    anchors.leftMargin: 10
-                    anchors.topMargin: 6
-                    spacing: 7
-
-                    Repeater {
-                        model: texts
-                        delegate: Text {
-
-                            text: model.text
-                            color: "white"
-                        }
-                    }
-
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-                    onClicked: view.currentIndex = model.index
-                }
+                onClicked: view.currentIndex = model.index
             }
         }
     } //ListView
