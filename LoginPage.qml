@@ -9,9 +9,6 @@ Page {
 
     readonly property color loginPageColor: "#4C5DF1"
 
-
-
-
     anchors.fill: parent
 
     Rectangle {

@@ -14,6 +14,7 @@ class TcpClient : public QObject
     Q_OBJECT
 public:
     explicit TcpClient();
+    int userID = -1;
     void connectToHost(const QString ip, const QString port);
 
 public slots:
@@ -21,8 +22,9 @@ public slots:
     void login(const QString& login, const QByteArray& hashedPassword){
         send("login:" + login.toUtf8() + "|" + hashedPassword);
     }
-
-signals:
+    void getChatList(){
+        send("getChatList:" + QString::number(userID).toUtf8());
+    }
 
 private slots:
     void onReadyRead();
@@ -33,6 +35,8 @@ signals:
     ///
     void loginSucceed();
     void loginFailed();
+
+    void newChatListElement(QString chatID, QString usrID, QString usrName, QString usrAvatarPath);
 
 private:
     QTcpSocket _socket;
@@ -46,8 +50,11 @@ private:
         return message.split(":")[0];
     }
     QString messageBody(QString message){
-        return message.split(":")[1];
+        QStringList m = message.split(":");
+        m.removeFirst();
+        return m.join(":");
     }
+
 };
 
 #endif // TCPCLIENT_H

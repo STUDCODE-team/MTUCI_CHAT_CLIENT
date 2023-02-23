@@ -56,6 +56,8 @@ signals:
     void loginFailed();
     void serverUnreachable();
 
+    void newChatListElement(QString chatID, QString usrID, QString usrName, QString usrAvatarPath);
+
 };
 
 #endif // BACKEND_H

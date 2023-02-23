@@ -1,21 +1,23 @@
 #include "TcpClient.h"
 
-
 TcpClient::TcpClient()
 {
     connect(&_socket,      &QTcpSocket::readyRead, this, &TcpClient::onReadyRead);
     connect(&reconn_timer, &QTimer::timeout,       this, &TcpClient::reconnect);
-
     connect(&_socket, &QTcpSocket::stateChanged, this, [&]()
     {
-        #ifdef QT_DEBUG
-            qDebug() << _socket.state();
-        #endif
         reconn_timer.stop();
+        #ifdef QT_DEBUG
+            if(_socket.state() == QTcpSocket::ConnectedState)
+                qDebug() << "[SOCKET]: Подключено к серверу";
+        #endif
         if (_socket.state() == QTcpSocket::ConnectingState
-         || _socket.state() == QTcpSocket::UnconnectedState)
+            || _socket.state() == QTcpSocket::UnconnectedState)
         {
             reconn_timer.start(3000);
+            #ifdef QT_DEBUG
+                qDebug() << "[SOCKET]: Ошибка подключения, повтор через 3 секунды...";
+            #endif
         }
     });
 }
@@ -60,10 +62,25 @@ void TcpClient::reply(const QByteArray &rep)
 #ifdef QT_DEBUG
         qInfo() << QTime::currentTime().toString() << "GET: \t" << rep;
 #endif
-
-    if(messageType(rep)=="login")
+    if(messageType(rep) == "login")
     {
-        (messageBody(rep) =="ok")? emit loginSucceed() : emit loginFailed();
+        if (messageBody(rep) != "fail")
+        {
+            userID = messageBody(rep).toInt();
+            emit loginSucceed();
+        }
+        else
+        {
+            emit loginFailed();
+        }
+        return;
     }
+    if(messageType(rep) == "chatList")
+    {
+        QStringList info = messageBody(rep).split(":");
+        emit newChatListElement(info[0], info[1], info[2], info[3]);
+        return;
+    }
+
 }
 

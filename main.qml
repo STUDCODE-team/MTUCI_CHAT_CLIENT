@@ -28,15 +28,14 @@ ApplicationWindow {
     function enterChatInterface(){
         mainpageLoader.sourceComponent = chatInterfaceComponent;
     }
-
     Loader{
         anchors.fill: parent
         id: mainpageLoader
     }
 
     Component.onCompleted: {
-//        loadLastSession()
-        enterChatInterface()
+        loadLastSession()
+//        enterChatInterface()
     }
     Component {
         id: loginPageComponent

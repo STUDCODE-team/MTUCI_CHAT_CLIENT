@@ -57,11 +57,30 @@ Rectangle {
     ListModel {
         id: chatsModel
 
-        ListElement {
-            userAvatarPath: "/img/personVK.png"
-            userName: "Игнатий Глушков"
-            lastMessage: "Последнее сообщение"
-            time: "02:29"
+//        ListElement {
+//            userID: 3
+//            userAvatarPath: "/img/personVK.png"
+//            userName: "Игнатий Глушков"
+//            lastMessage: "Последнее сообщение"
+//            time: "02:29"
+//        }
+//        ListElement {
+//            chatID: -1
+//            userID: 4
+//            userAvatarPath: "/img/personVK.png"
+//            userName: "Александр Плешаков"
+//            lastMessage: "Последнее сообщение"
+//            time: "02:34"
+//        }
+    }
+
+    Connections {
+        target: backend
+        function onNewChatListElement(chatID, usrID, usrName, usrAvatarName) {
+            chatsModel.append({"chatID": chatID,
+                               "userID": usrID,
+                               "userName": usrName,
+                               "userAvatarPath": usrAvatarName})
         }
     }
 
@@ -70,10 +89,13 @@ Rectangle {
 
         width: 258
         height: parent.height - searchBlock.height
-        spacing: 15
+        spacing: 5
         anchors.bottom: parent.bottom
         anchors.left: menuBar.right
         clip: true
+        onCurrentIndexChanged: {
+
+        }
 
         highlight: Rectangle {
             color: "white"
@@ -147,5 +169,42 @@ Rectangle {
 
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: chatList.right
+    }
+    Loader{
+        anchors.top: parent.top
+        anchors.left: rightSep.right
+        anchors.right: parent.right
+        anchors.bottom: parent.bottom
+
+        sourceComponent: Component {
+            Item{
+                anchors.fill: parent
+                ListModel{
+                    id: messagesModel
+                    ListElement{
+                        message: "Hello"
+                        fromMe: "true"
+                    }
+                }
+
+                ListView{
+                    anchors.fill: parent
+                    model:messagesModel
+                    spacing: 3
+                    delegate: Rectangle {
+                        width: messageText.width + 20
+                        height: messageText.height + 10
+                        radius: 10
+                        anchors.left: (fromMe === "false")? parent.left : null
+                        anchors.right: (fromMe === "true")? parent.right : null
+                        Text {
+                            id: messageText
+                            anchors.centerIn: parent
+                            text: message
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -15,9 +15,7 @@ Page {
             anchors.verticalCenter: parent.verticalCenter
             onClicked: _root.StackView.view.pop()
             topPadding: 20
-
         }
-
         Label {
             id: _pageTitle
             text: inConversationWith
