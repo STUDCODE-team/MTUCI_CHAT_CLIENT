@@ -36,8 +36,8 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-//       loadLastSession()
-       enterChatInterface()
+       loadLastSession()
+//       enterChatInterface()
     }
     Component {
         id: loginPageComponent

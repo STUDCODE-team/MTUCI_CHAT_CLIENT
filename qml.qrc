@@ -3,7 +3,6 @@
         <file>main.qml</file>
         <file>ContactPage/ContactPage.qml</file>
         <file>ContactPage/SeparatorLine.qml</file>
-        <file>ContactPage/ConversationPage.qml</file>
         <file>Buttons/InputField.qml</file>
         <file>Buttons/SetButton.qml</file>
         <file>LoginPage/LoginPage.qml</file>
@@ -12,5 +11,6 @@
         <file>ContactPage/ChatsModel.qml</file>
         <file>ContactPage/ChatList.qml</file>
         <file>ContactPage/MainMenuBar.qml</file>
+        <file>ContactPage/ConversationPage.qml</file>
     </qresource>
 </RCC>

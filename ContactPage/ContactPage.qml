@@ -26,7 +26,6 @@ Rectangle {
         id: menuBar
     }
 
-
     SearchBlock {
         id: searchBlock
     }
@@ -66,36 +65,6 @@ Rectangle {
         anchors.left: rightSep.right
         anchors.right: parent.right
         anchors.bottom: parent.bottom
-
-        sourceComponent: Component {
-            Item{
-                anchors.fill: parent
-                ListModel{
-                    id: messagesModel
-                    ListElement{
-                        message: "Hello"
-                        fromMe: "true"
-                    }
-                }
-
-                ListView{
-                    anchors.fill: parent
-                    model:messagesModel
-                    spacing: 3
-                    delegate: Rectangle {
-                        width: messageText.width + 20
-                        height: messageText.height + 10
-                        radius: 10
-                        anchors.left: (fromMe === "false")? parent.left : null
-                        anchors.right: (fromMe === "true")? parent.right : null
-                        Text {
-                            id: messageText
-                            anchors.centerIn: parent
-                            text: message
-                        }
-                    }
-                }
-            }
-        }
+        sourceComponent: ConversationPage{}
     }
 }

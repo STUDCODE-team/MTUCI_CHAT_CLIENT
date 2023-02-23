@@ -7,17 +7,16 @@ import "../Buttons" as Buttons
 
 ListModel {
     id: chatsModel
-
     ListElement {
-        userID: 3
+        userID: "3"
         userAvatarPath: "/img/personVK.png"
         userName: "Игнатий Глушков"
         lastMessage: "Последнее сообщение"
         time: "02:29"
     }
     ListElement {
-        chatID: -1
-        userID: 4
+        chatID: "-1"
+        userID: "4"
         userAvatarPath: "/img/personVK.png"
         userName: "Александр Плешаков"
         lastMessage: "Последнее сообщение"
