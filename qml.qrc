@@ -11,5 +11,6 @@
         <file>ContactPage/SearchBlock.qml</file>
         <file>ContactPage/ChatsModel.qml</file>
         <file>ContactPage/ChatList.qml</file>
+        <file>ContactPage/MainMenuBar.qml</file>
     </qresource>
 </RCC>

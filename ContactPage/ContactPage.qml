@@ -22,14 +22,8 @@ Rectangle {
         }
     }
 
-    Rectangle {
+    MainMenuBar {
         id: menuBar
-
-        width: 58
-        height: parent.height
-        color: "transparent"
-
-        anchors.left: parent.left
     }
 
 

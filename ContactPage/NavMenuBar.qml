@@ -30,7 +30,7 @@ Item {
     }
 
     Image {
-        source: "/img/chats.svg"
+        source: "/img/chats2.svg"
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: profileSvg.bottom
