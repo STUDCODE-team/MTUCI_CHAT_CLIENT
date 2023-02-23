@@ -1,12 +1,15 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>ContactPage.qml</file>
-        <file>ConversationPage.qml</file>
-        <file>LoginPage.qml</file>
-        <file>InputField.qml</file>
-        <file>SetButton.qml</file>
-        <file>MTUCI_Icon.qml</file>
-        <file>SeparatorLine.qml</file>
+        <file>ContactPage/ContactPage.qml</file>
+        <file>ContactPage/SeparatorLine.qml</file>
+        <file>ContactPage/ConversationPage.qml</file>
+        <file>Buttons/InputField.qml</file>
+        <file>Buttons/SetButton.qml</file>
+        <file>LoginPage/LoginPage.qml</file>
+        <file>LoginPage/MTUCI_Icon.qml</file>
+        <file>ContactPage/SearchBlock.qml</file>
+        <file>ContactPage/ChatsModel.qml</file>
+        <file>ContactPage/ChatList.qml</file>
     </qresource>
 </RCC>

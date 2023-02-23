@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>img/icon.png</file>
         <file>img/personVK.png</file>
+        <file>img/addGroup.svg</file>
     </qresource>
 </RCC>

@@ -1,6 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
+import "ContactPage/" as CP
+import "LoginPage/" as LP
 
 ApplicationWindow {
     id: _mainWindow
@@ -34,15 +36,15 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        loadLastSession()
-//        enterChatInterface()
+//       loadLastSession()
+       enterChatInterface()
     }
     Component {
         id: loginPageComponent
-        LoginPage {}
+        LP.LoginPage {}
     }
     Component {
         id: chatInterfaceComponent
-        ContactPage {}
+        CP.ContactPage {}
     }
 }
