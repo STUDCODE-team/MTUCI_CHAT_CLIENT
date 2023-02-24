@@ -60,8 +60,26 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: chatList.right
     }
+
+    SeparatorLine {
+        id: topSep
+
+        sepWidth: 560
+        sepHeight: 1
+
+        anchors.left: rightSep.right
+        anchors.top: topMenu.bottom
+        anchors.leftMargin: 12
+        anchors.bottomMargin: 2
+    }
+
+    TopMenu {
+        id: topMenu
+    }
+
+
     Loader{
-        anchors.top: parent.top
+        anchors.top: topSep.bottom
         anchors.left: rightSep.right
         anchors.right: parent.right
         anchors.bottom: parent.bottom

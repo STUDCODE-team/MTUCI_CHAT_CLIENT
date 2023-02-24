@@ -22,12 +22,17 @@ Item{
                 message: "ой блять да ты заебал уже ныть ну бросила и бросила. Послушай, мы с пацанами всегда тебя поддерживаем, может сходим пивка попьем?"
                 fromMe: "true"
             }
+            ListElement{
+                message: "Погнали"
+                fromMe: "false"
+            }
         }
 
         ListView{
             anchors.fill: parent
             model:messagesModel
             spacing: 10
+            clip: true
             delegate: Item {
                 id: messageDelegate
                 width: messageText.width + 20
@@ -41,9 +46,11 @@ Item{
                 Component.onCompleted: {
                     if(fromMe === "true") {
                         anchors.right = parent.right
+                        anchors.rightMargin = 10
                         background.color = "#00A3FF"
                     }else{
                         anchors.left = parent.left
+                        anchors.leftMargin = 16
                         background.color = "white"
                         background.opacity = 0.12
                     }

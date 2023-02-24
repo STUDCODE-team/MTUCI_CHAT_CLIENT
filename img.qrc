@@ -6,5 +6,7 @@
         <file>img/profile.svg</file>
         <file>img/settings.svg</file>
         <file>img/chats.svg</file>
+        <file>img/searchInChat.svg</file>
+        <file>img/chatSettings.svg</file>
     </qresource>
 </RCC>

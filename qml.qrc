@@ -12,5 +12,6 @@
         <file>ContactPage/ChatList.qml</file>
         <file>ContactPage/MainMenuBar.qml</file>
         <file>ContactPage/ConversationPage.qml</file>
+        <file>ContactPage/TopMenu.qml</file>
     </qresource>
 </RCC>
