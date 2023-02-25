@@ -2,7 +2,6 @@ import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtGraphicalEffects 1.15
-import "../Buttons" as Buttons
 
 
 ListView {
@@ -25,7 +24,7 @@ ListView {
     highlightFollowsCurrentItem: true
 
 
-    model: chatsModel
+    model: ListModel{id: chatsModel}
     delegate: Item {
         id: listDelegate
 
@@ -37,13 +36,10 @@ ListView {
 
         Image {
             id: useravatar
-
             source: userAvatarPath
-
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
             anchors.leftMargin: 18
-
         }
         Text {
             text: userName

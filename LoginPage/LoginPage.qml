@@ -3,7 +3,7 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import QtGraphicalEffects 1.15
-import "../Buttons" as Buttons
+import "../Controls/"
 
 Page {
     id: _loginPage
@@ -31,18 +31,18 @@ Page {
                 height: 130
                 width: 130
             }
-            Buttons.InputField {
+            InputField {
                 id: login
                 placeHolder: "Логин"
                 Layout.bottomMargin: 5
             }
-            Buttons.InputField {
+            InputField {
                 id: password
                 placeHolder: "Пароль"
                 isPassword: true
                 Layout.bottomMargin: 16
             }
-            Buttons.SetButton {
+            PushButton {
                 id: loginButton
                 text: "Войти"
                 onClicked: {

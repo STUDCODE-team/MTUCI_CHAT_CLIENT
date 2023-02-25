@@ -2,7 +2,8 @@ import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtGraphicalEffects 1.15
-import "../Buttons" as Buttons
+import "../Controls/"
+import "./Messager/"
 
 
 Rectangle {
@@ -22,18 +23,22 @@ Rectangle {
         }
     }
 
-    MainMenuBar {
+    LeftPanel{
         id: menuBar
     }
 
     SearchBlock {
         id: searchBlock
     }
-
-    ChatsModel {
-        id: chatsModel
+    ///
+    ///
+    ///
+    ///
+    ///
+    ChatListView {
+        id: chatList
+        model: ListModel {id: chatsModel}
     }
-
     Connections {
         target: backend
         function onNewChatListElement(chatID, usrID, usrName, usrAvatarName) {
@@ -43,10 +48,11 @@ Rectangle {
                                "userAvatarPath": usrAvatarName})
         }
     }
-
-    ChatList {
-        id: chatList
-    }
+    ///
+    ///
+    ///
+    ///
+    ///
 
     SeparatorLine {
         id: leftSep
@@ -76,7 +82,6 @@ Rectangle {
     TopMenu {
         id: topMenu
     }
-
 
     Loader{
         anchors.top: topSep.bottom

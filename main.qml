@@ -1,8 +1,8 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
-import "ContactPage/" as CP
-import "LoginPage/" as LP
+import "MainInterfacePage/"
+import "LoginPage/"
 
 ApplicationWindow {
     id: _mainWindow
@@ -30,21 +30,26 @@ ApplicationWindow {
     function enterChatInterface(){
         mainpageLoader.sourceComponent = chatInterfaceComponent;
     }
+    Component.onCompleted: {
+//       loadLastSession()
+       enterChatInterface()
+    }
+    ///
+    ///
+    ///
     Loader{
         anchors.fill: parent
         id: mainpageLoader
     }
-
-    Component.onCompleted: {
-       loadLastSession()
-       enterChatInterface()
-    }
     Component {
         id: loginPageComponent
-        LP.LoginPage {}
+        LoginPage {}
     }
     Component {
         id: chatInterfaceComponent
-        CP.ContactPage {}
+        MainInterfacePage{}
     }
+    ///
+    ///
+    ///
 }

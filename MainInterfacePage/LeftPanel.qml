@@ -2,7 +2,6 @@ import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtGraphicalEffects 1.15
-import "../Buttons" as Buttons
 
 
 Item {
@@ -16,7 +15,7 @@ Item {
     Image {
         id: profileSvg
 
-        source: "/img/profile.svg"
+        source: "/img/Profile.svg"
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
@@ -35,12 +34,10 @@ Item {
 
         width: 24
         height: 24
-
-
     }
 
     Image {
-        source: "/img/settings.svg"
+        source: "/img/Settings.svg"
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
@@ -48,7 +45,5 @@ Item {
 
         width: 24
         height: 24
-
-
     }
 }

@@ -1,17 +1,29 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>ContactPage/ContactPage.qml</file>
-        <file>ContactPage/SeparatorLine.qml</file>
-        <file>Buttons/InputField.qml</file>
-        <file>Buttons/SetButton.qml</file>
         <file>LoginPage/LoginPage.qml</file>
         <file>LoginPage/MTUCI_Icon.qml</file>
-        <file>ContactPage/SearchBlock.qml</file>
-        <file>ContactPage/ChatsModel.qml</file>
-        <file>ContactPage/ChatList.qml</file>
-        <file>ContactPage/MainMenuBar.qml</file>
-        <file>ContactPage/ConversationPage.qml</file>
-        <file>ContactPage/TopMenu.qml</file>
+        <file>MainInterfacePage/MainInterfacePage.qml</file>
+        <file>MainInterfacePage/LeftPanel.qml</file>
+        <file>Controls/InputField.qml</file>
+        <file>Controls/PushButton.qml</file>
+        <file>Controls/SeparatorLine.qml</file>
+        <file>img/addGroup.svg</file>
+        <file>img/chats.svg</file>
+        <file>img/chatSettings.svg</file>
+        <file>img/icon.png</file>
+        <file>img/icon.svg</file>
+        <file>img/logoChatMTUCI.png</file>
+        <file>img/personVK.png</file>
+        <file>img/Profile.svg</file>
+        <file>img/searchInChat.svg</file>
+        <file>img/Settings.svg</file>
+        <file>MainInterfacePage/Messager/ChatListView.qml</file>
+        <file>MainInterfacePage/Messager/ConversationPage.qml</file>
+        <file>MainInterfacePage/Messager/SearchBlock.qml</file>
+        <file>MainInterfacePage/Messager/TopMenu.qml</file>
+        <file>fonts/OpenSans-Regular.ttf</file>
+        <file>fonts/Roboto-Light.ttf</file>
     </qresource>
+    <qresource prefix="/qml"/>
 </RCC>
