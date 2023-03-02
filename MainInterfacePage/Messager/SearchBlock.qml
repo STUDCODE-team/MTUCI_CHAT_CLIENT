@@ -2,8 +2,7 @@ import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtGraphicalEffects 1.15
-import "../Buttons" as Buttons
-
+import "../../Controls/"
 
 Item {
     id: searchBlock
@@ -15,7 +14,7 @@ Item {
     anchors.top: parent.top
     anchors.topMargin: 29
 
-    Buttons.InputField {
+    InputField {
         id: searchUser
 
         inputWidth: 200

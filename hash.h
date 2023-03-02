@@ -14,7 +14,7 @@ public:
     {
         return QPasswordDigestor::deriveKeyPbkdf2(QCryptographicHash::Sha256,
                                            password.toUtf8(), salt.toUtf8(),
-                                           1024, 16);
+                                           1024, 32);
     }
     static QByteArray getSalt(const QString& login)
     {

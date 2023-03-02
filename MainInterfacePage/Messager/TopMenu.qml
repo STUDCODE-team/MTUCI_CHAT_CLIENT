@@ -2,11 +2,15 @@ import QtQuick 2.15
 import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtGraphicalEffects 1.15
-import "../Buttons" as Buttons
+
 
 
 Item {
     id: topMenu
+    function setData(userName, info){
+        chatUserName.text = userName
+        chatUserOnlineInfo.text = info
+    }
 
     width: 584
     height: 58
@@ -30,10 +34,10 @@ Item {
             anchors.leftMargin: 36
             anchors.left: parent.left
             anchors.top: parent.top
-
         }
 
         Text {
+            id: chatUserOnlineInfo
             text: "был(а) 8 минут назад"
             font.pointSize: 10
             color: "white"
