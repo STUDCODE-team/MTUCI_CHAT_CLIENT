@@ -7,6 +7,10 @@ import QtGraphicalEffects 1.15
 
 Item {
     id: topMenu
+    function setData(userName, info){
+        chatUserName.text = userName
+        chatUserOnlineInfo.text = info
+    }
 
     width: 584
     height: 58
@@ -30,10 +34,10 @@ Item {
             anchors.leftMargin: 36
             anchors.left: parent.left
             anchors.top: parent.top
-
         }
 
         Text {
+            id: chatUserOnlineInfo
             text: "был(а) 8 минут назад"
             font.pointSize: 10
             color: "white"

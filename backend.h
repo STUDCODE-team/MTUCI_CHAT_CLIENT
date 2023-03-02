@@ -56,7 +56,7 @@ signals:
     void loginFailed();
     void serverUnreachable();
 
-    void newChatListElement(QString chatID, QString usrID, QString usrName, QString usrAvatarPath);
+    void newChatListElement(QStringList chatData);
 
 };
 

@@ -36,7 +36,7 @@ signals:
     void loginSucceed();
     void loginFailed();
 
-    void newChatListElement(QString chatID, QString usrID, QString usrName, QString usrAvatarPath);
+    void newChatListElement(QStringList chatData);
 
 private:
     QTcpSocket _socket;

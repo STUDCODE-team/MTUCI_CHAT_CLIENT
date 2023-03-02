@@ -15,7 +15,7 @@ Item {
     Image {
         id: profileSvg
 
-        source: "/img/Profile.svg"
+        source: "/img/defaultAvatar.svg"
 
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top

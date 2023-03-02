@@ -14,7 +14,7 @@
         <file>img/icon.png</file>
         <file>img/logoChatMTUCI.png</file>
         <file>img/personVK.png</file>
-        <file>img/Profile.svg</file>
+        <file>img/defaultAvatar.svg</file>
         <file>img/searchInChat.svg</file>
         <file>img/Settings.svg</file>
         <file>MainInterfacePage/Messager/ChatListView.qml</file>

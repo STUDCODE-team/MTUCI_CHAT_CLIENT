@@ -13,9 +13,7 @@ ListView {
     anchors.bottom: parent.bottom
     anchors.left: menuBar.right
     clip: true
-    onCurrentIndexChanged: {
-
-    }
+    onCurrentIndexChanged: {}
 
     highlight: Rectangle {
         color: "white"
@@ -23,8 +21,21 @@ ListView {
     }
     highlightFollowsCurrentItem: true
 
+    model: ListModel {id: chatsModel}
 
-    model: ListModel{id: chatsModel}
+    Connections {
+        target: backend
+        function onNewChatListElement(chatData) {
+            chatsModel.append({"chatID":            chatData[0],
+                               "userID":            chatData[1],
+                               "userName":          chatData[2],
+                               "userAvatarPath":    "qrc:/" + chatData[3],
+                               "lastMessage":       chatData[4],
+                               "lastMessageTime":   chatData[5],
+                               "lastMessageID":     chatData[6]})
+        }
+    }
+
     delegate: Item {
         id: listDelegate
 
@@ -60,7 +71,7 @@ ListView {
             anchors.topMargin: 30
         }
         Text {
-            text: time
+            text: lastMessageTime
             color: "white"
             opacity: 0.7
             anchors.top: parent.top

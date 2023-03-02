@@ -27,27 +27,13 @@ Rectangle {
         id: menuBar
     }
 
-    SearchBlock {
-        id: searchBlock
-    }
+    SearchBlock {id: searchBlock}
     ///
     ///
     ///
     ///
     ///
-    ChatListView {
-        id: chatList
-        model: ListModel {id: chatsModel}
-    }
-    Connections {
-        target: backend
-        function onNewChatListElement(chatID, usrID, usrName, usrAvatarName) {
-            chatsModel.append({"chatID": chatID,
-                               "userID": usrID,
-                               "userName": usrName,
-                               "userAvatarPath": usrAvatarName})
-        }
-    }
+    ChatListView {id: chatList}
     ///
     ///
     ///

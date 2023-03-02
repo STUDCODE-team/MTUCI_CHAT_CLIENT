@@ -77,8 +77,8 @@ void TcpClient::reply(const QByteArray &rep)
     }
     if(messageType(rep) == "chatList")
     {
-        QStringList info = messageBody(rep).split(":");
-        emit newChatListElement(info[0], info[1], info[2], info[3]);
+        QStringList info = messageBody(rep).split("|");
+        emit newChatListElement(info);
         return;
     }
 
