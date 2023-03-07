@@ -13,7 +13,11 @@ ListView {
     anchors.bottom: parent.bottom
     anchors.left: menuBar.right
     clip: true
-    onCurrentIndexChanged: {}
+
+    onCurrentIndexChanged: {
+        var chatId = chatsModel.get(currentIndex).chatID
+        backend.getMessages(chatId)
+    }
 
     highlight: Rectangle {
         color: "white"

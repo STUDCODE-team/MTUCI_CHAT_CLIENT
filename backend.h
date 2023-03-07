@@ -47,6 +47,14 @@ public slots:
         QByteArray hashedPassword = Hash::password(password, salt).toHex();
         client.login(login, hashedPassword);
     }
+    ///
+    ///
+    ///
+    void getMessages(QString chatID)
+    {
+        emit clearMessages();
+        client.getMessages(chatID);
+    }
 
 signals:
     ///
@@ -57,7 +65,8 @@ signals:
     void serverUnreachable();
 
     void newChatListElement(QStringList chatData);
-
+    void clearMessages();
+    void addMessage(QStringList messageData);
 };
 
 #endif // BACKEND_H

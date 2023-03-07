@@ -7,6 +7,22 @@ import QtGraphicalEffects 1.15
 Item{
     anchors.fill: parent
     id: messagesField
+    function clear(){
+        messagesModel.clear()
+    }
+
+    Connections {
+        target: backend
+        function onClearMessages() {messagesModel.clear()}
+        function onAddMessage(data) {
+            messagesModel.append({
+                                     "message": data[0],
+                                     "fromMe": data[1]
+                                 })
+        }
+
+    }
+
     ListModel{
         id: messagesModel
         ListElement{
@@ -32,6 +48,7 @@ Item{
         model:messagesModel
         spacing: 10
         clip: true
+
         delegate: Item {
             id: messageDelegate
             width: messageText.width + 20

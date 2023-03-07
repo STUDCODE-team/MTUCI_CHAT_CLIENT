@@ -25,6 +25,10 @@ public slots:
     void getChatList(){
         send("getChatList:" + QString::number(userID).toUtf8());
     }
+    void getMessages(QString chatID)
+    {
+        send("getMessages:" + chatID.toUtf8() + ":" + QString::number(userID).toUtf8());
+    }
 
 private slots:
     void onReadyRead();
@@ -37,6 +41,7 @@ signals:
     void loginFailed();
 
     void newChatListElement(QStringList chatData);
+    void addMessage(QStringList messageData);
 
 private:
     QTcpSocket _socket;

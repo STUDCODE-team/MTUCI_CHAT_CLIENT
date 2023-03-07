@@ -8,6 +8,7 @@ Backend::Backend()
     });
     connect(&client, &TcpClient::loginFailed, this, &Backend::loginFailed);
     connect(&client, &TcpClient::newChatListElement, this, &Backend::newChatListElement);
+    connect(&client, &TcpClient::addMessage, this, &Backend::addMessage);
 
     client.connectToHost("localhost", "30391");
 }
