@@ -10,6 +10,7 @@ Backend::Backend()
     connect(&client, &TcpClient::newChatListElement, this, &Backend::newChatListElement);
     connect(&client, &TcpClient::addMessage, this, &Backend::addMessage);
 
-    client.connectToHost("localhost", "30391");
+//    client.connectToHost("localhost", "30391");
+    client.connectToHost("5.253.62.248", "30391");
 }
 

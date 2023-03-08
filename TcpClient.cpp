@@ -32,7 +32,7 @@ void TcpClient::connectToHost(const QString ip, const QString port)
 void TcpClient::reconnect()
 {
     _socket.disconnectFromHost();
-    _socket.waitForDisconnected(1000);
+    _socket.waitForDisconnected(300);
     _socket.connectToHost(ip, port.toUInt());
 }
 
