@@ -2,10 +2,11 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include "backend.h"
-
+#include "qfont.h"
 
 int main(int argc, char *argv[])
 {
+
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
@@ -19,9 +20,12 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
 
+
     engine.rootContext()->setContextProperty("backend", new Backend());
     engine.load(url);
 
+    QFont serifFont(":/OpenSans-Regular.ttf");
+    QGuiApplication::setFont(serifFont);
 
     return app.exec();
 }

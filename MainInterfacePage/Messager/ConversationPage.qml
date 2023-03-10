@@ -76,6 +76,7 @@ Item{
                 id: messageText
                 anchors.centerIn: parent
                 text: message
+                font.pointSize: 13
                 color: "white"
                 wrapMode: Text.WordWrap
                 onContentWidthChanged: {

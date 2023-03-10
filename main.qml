@@ -4,6 +4,7 @@ import QtQuick.Controls 2.15
 import "MainInterfacePage/"
 import "LoginPage/"
 
+
 ApplicationWindow {
     id: _mainWindow
     width: 900
@@ -31,8 +32,8 @@ ApplicationWindow {
         mainpageLoader.sourceComponent = chatInterfaceComponent;
     }
     Component.onCompleted: {
-    //   loadLastSession()
-       enterChatInterface()
+       loadLastSession()
+    //   enterChatInterface()
     }
     ///
     ///
@@ -49,6 +50,8 @@ ApplicationWindow {
         id: chatInterfaceComponent
         MainInterfacePage{}
     }
+
+
 
     ///
     ///
