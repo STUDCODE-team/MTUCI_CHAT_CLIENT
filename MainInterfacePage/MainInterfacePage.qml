@@ -65,15 +65,31 @@ Rectangle {
         anchors.bottomMargin: 2
     }
 
+    SeparatorLine {
+        id: bottomSep
+
+        sepWidth: 560
+        sepHeight: 1
+
+        anchors.left: rightSep.right
+        anchors.bottom: parent.bottom
+        anchors.leftMargin: 12
+        anchors.bottomMargin: 48
+    }
+
     TopMenu {
         id: topMenu
+    }
+
+    BottomMenu {
+        id: bottomMenu
     }
 
     Loader{
         anchors.top: topSep.bottom
         anchors.left: rightSep.right
         anchors.right: parent.right
-        anchors.bottom: parent.bottom
+        anchors.bottom: bottomMenu.top
         sourceComponent: ConversationPage{}
     }
 }

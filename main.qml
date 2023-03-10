@@ -31,8 +31,8 @@ ApplicationWindow {
         mainpageLoader.sourceComponent = chatInterfaceComponent;
     }
     Component.onCompleted: {
-       loadLastSession()
-//       enterChatInterface()
+    //   loadLastSession()
+       enterChatInterface()
     }
     ///
     ///

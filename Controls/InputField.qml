@@ -10,7 +10,9 @@ Rectangle {
     property int inputWidth: 280
     property int inputHeight: 30
     property int inputRadius: 12
+    property int leftMargin: 5
 
+    property color backColor: "#4C5DF1"
     readonly property color borderColor: "#00D6C9"
 
     readonly property string text: input.text
@@ -20,13 +22,13 @@ Rectangle {
     radius: inputRadius
     border.color: borderColor
     border.width: 0
-    color: "#4C5DF1"
+    color: backColor
 
     TextField {
         id: input
         anchors{
             fill: parent
-            leftMargin: 5
+            leftMargin: leftMargin
         }
         verticalAlignment: TextField.AlignVCenter
         echoMode: isPassword ? TextInput.Password : TextInput.Normal

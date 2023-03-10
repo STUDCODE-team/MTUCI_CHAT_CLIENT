@@ -23,6 +23,10 @@
         <file>MainInterfacePage/Messager/TopMenu.qml</file>
         <file>fonts/OpenSans-Regular.ttf</file>
         <file>fonts/Roboto-Light.ttf</file>
+        <file>img/clip.svg</file>
+        <file>img/smile.svg</file>
+        <file>img/microphone.svg</file>
+        <file>MainInterfacePage/Messager/BottomMenu.qml</file>
     </qresource>
     <qresource prefix="/qml"/>
 </RCC>
