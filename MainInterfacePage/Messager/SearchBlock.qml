@@ -40,17 +40,31 @@ Item {
             left: searchBlock.left
             leftMargin: 12
         }
+
+        MouseArea {
+            anchors.fill: parent
+            hoverEnabled: true
+            cursorShape: Qt.WhatsThisCursor
+        }
     }
 
     Image {
         source: "/img/addGroup.svg"
         width: 18
         height: 18
+        opacity: mouseAreaGroup.containsMouse ? 1 : 0.7
 
         anchors {
             verticalCenter: searchUser.verticalCenter
             left: searchUser.right
             leftMargin: 8
+        }
+
+        MouseArea {
+            id: mouseAreaGroup
+            anchors.fill: parent
+            hoverEnabled: true
+            cursorShape: Qt.WhatsThisCursor
         }
     }
 }

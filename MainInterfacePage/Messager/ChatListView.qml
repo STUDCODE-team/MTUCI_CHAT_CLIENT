@@ -32,9 +32,10 @@ ListView {
 
     highlight: Rectangle {
         color: "white"
-        opacity: 0.04
+        opacity: 0.07
     }
     highlightFollowsCurrentItem: true
+    highlightMoveDuration: 1
 
     model: ListModel {id: chatsModel}
 
@@ -59,6 +60,12 @@ ListView {
 
         width: parent.width
         height: 50
+
+        Rectangle {
+            anchors.fill: parent
+            color: "white"
+            opacity: itemMouseArea.containsMouse ? 0.03 : 0
+        }
 
         Image {
             id: useravatar
@@ -96,8 +103,12 @@ ListView {
             font.pointSize: 10
         }
         MouseArea {
+            id: itemMouseArea
+
             anchors.fill: parent
             onClicked: view.currentIndex = model.index
+            hoverEnabled: true
+            cursorShape: Qt.WhatsThisCursor
         }
     }
 }

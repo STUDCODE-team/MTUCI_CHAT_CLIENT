@@ -9,6 +9,8 @@ Item {
     id: topMenu
     property string title: ""
     property string extraInfo: ""
+    property bool settingsPressed: false
+    property bool searchPressed: false
 //    function setData(userName, info){
 //        chatUserName.text = userName
 //        chatUserOnlineInfo.text = info
@@ -48,18 +50,63 @@ Item {
         }
     }
 
+    Rectangle {
+        id: bakcRectSearch
+
+        width: 30
+        height: 30
+        radius: 20
+        color: searchPressed ? "#ffffff" : "transparent"
+        opacity: 0.1
+
+        anchors.verticalCenter: searchInChat.verticalCenter
+        anchors.horizontalCenter: searchInChat.horizontalCenter
+
+        MouseArea {
+            id: mouseAreaSearch
+
+            anchors.fill: parent
+            hoverEnabled: true
+            cursorShape: Qt.WhatsThisCursor
+            onPressed: searchPressed ? searchPressed=false : searchPressed=true
+        }
+    }
+
     Image {
         id: searchInChat
         source: "/img/searchInChat.svg"
 
         width: 16
         height:16
-        opacity: 0.8
+        opacity: mouseAreaSearch.containsMouse ? 1 : 0.7
 
         anchors.right: chatSettings.left
         anchors.verticalCenter: parent.verticalCenter
         anchors.rightMargin: 20
     }
+
+    Rectangle {
+        id: bakcRectSettings
+
+        width: 30
+        height: 30
+        radius: 20
+        color: settingsPressed ? "#ffffff" : "transparent"
+        opacity: 0.1
+
+        anchors.verticalCenter: chatSettings.verticalCenter
+        anchors.horizontalCenter: chatSettings.horizontalCenter
+
+        MouseArea {
+            id: mouseAreaSettings
+
+            anchors.fill: parent
+            hoverEnabled: true
+            cursorShape: Qt.WhatsThisCursor
+            onPressed: settingsPressed ? settingsPressed=false : settingsPressed=true
+        }
+    }
+
 
     Image {
         id: chatSettings
@@ -67,10 +114,10 @@ Item {
 
         width: 16
         height:16
+        opacity: mouseAreaSettings.containsMouse ? 1 : 0.7
 
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
-        anchors.rightMargin: 36
-
+        anchors.rightMargin: 20
     }
 }
