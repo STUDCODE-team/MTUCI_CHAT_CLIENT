@@ -42,13 +42,13 @@ Rectangle {
 
     SeparatorLine {
         id: leftSep
-//visible: false
+        visible: false
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: chatList.left
     }
     SeparatorLine {
         id: rightSep
-//        visible: false
+//       visible: false
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: chatList.right
     }
@@ -58,10 +58,12 @@ Rectangle {
 
         sepWidth: 560
         sepHeight: 1
-
+        visible: false
         anchors.left: rightSep.right
-        anchors.top: topMenu.bottom
+        anchors.right: parent.right
         anchors.leftMargin: 12
+        anchors.rightMargin: 12
+        anchors.top: topMenu.bottom
         anchors.bottomMargin: 2
     }
 
@@ -70,11 +72,12 @@ Rectangle {
 
         sepWidth: 560
         sepHeight: 1
-
+        visible: false
         anchors.left: rightSep.right
-        anchors.bottom: parent.bottom
+        anchors.right: parent.right
         anchors.leftMargin: 12
-        anchors.bottomMargin: 48
+        anchors.rightMargin: 12
+        anchors.bottom: bottomMenu.top
     }
 
     TopMenu {

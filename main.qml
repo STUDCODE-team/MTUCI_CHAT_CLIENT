@@ -10,7 +10,7 @@ ApplicationWindow {
     width: 900
     height: 600
     visible: true
-    title: qsTr("MTUCI Chat")
+    title: qsTr("MTUCI Chat [alfa 1.0]")
 
 
     ///

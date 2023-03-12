@@ -65,7 +65,7 @@ ListView {
             source: userAvatarPath
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
-            anchors.leftMargin: 18
+            anchors.leftMargin: 12
         }
         Text {
             text: userName

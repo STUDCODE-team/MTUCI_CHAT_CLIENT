@@ -65,7 +65,7 @@ Item {
         id: chatSettings
         source: "/img/chatSettings.svg"
 
-        width: 4
+        width: 16
         height:16
 
         anchors.right: parent.right
