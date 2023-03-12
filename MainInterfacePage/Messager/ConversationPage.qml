@@ -15,38 +15,32 @@ Item{
         target: backend
         function onClearMessages() {messagesModel.clear()}
         function onAddMessage(data) {
+            var count = messagesModel.count
+            var lastItem = messagesModel.get(messagesModel.count-1)
             messagesModel.append({
                                      "message": data[0],
-                                     "fromMe": data[1]
+                                     "fromID": data[1],
+                                     "fromName": data[2],
+                                     "avatar": data[3],
+                                     "time": data[4],
+                                     "isMyMessage": data[1] === backend.myID(),
+                                     "isBackConnected": count > 0 ? data[1] === lastItem.fromID : false,
+                                     "isForwardConnected": false
                                  })
+            if (count > 0)
+                lastItem.isForwardConnected = messagesModel.get(messagesModel.count-1).isBackConnected
         }
-
     }
 
     ListModel{
         id: messagesModel
-        ListElement{
-            message: "Привет. Что делваешь?"
-            fromMe: "true"
-        }
-        ListElement{
-            message: "сплю"
-            fromMe: "false"
-        }
-        ListElement{
-            message: "ой блять да ты заебал уже ныть ну бросила и бросила. Послушай, мы с пацанами всегда тебя поддерживаем, может сходим пивка попьем?"
-            fromMe: "true"
-        }
-        ListElement{
-            message: "Погнали"
-            fromMe: "false"
-        }
     }
 
     ListView{
+        id: view
         anchors.fill: parent
         model:messagesModel
-        spacing: 10
+        spacing: 3
         clip: true
 
         delegate: Item {
@@ -58,9 +52,32 @@ Item{
                 id:background
                 anchors.fill: parent
                 radius: 10
+                layer.enabled: true
+                function init()
+                {
+                    if(isBackConnected)    setCorner_(corner.createObject(this), true)
+                    if(isForwardConnected) setCorner_(corner.createObject(this), false)
+                }
+                function setCorner_(corner, isTop) {
+                    if(isTop) corner.anchors.top = background.top
+                    else      corner.anchors.bottom = background.bottom
+
+                    if(isMyMessage) corner.anchors.right = background.right
+                    else            corner.anchors.left  = background.left
+                }
+
+                Component{
+                    id: corner
+                    Rectangle{
+                        width: 10
+                        height: 10
+                        color: background.color
+                    }
+                }
             }
             Component.onCompleted: {
-                if(fromMe === "true") {
+                background.init()
+                if(isMyMessage) {
                     anchors.right = parent.right
                     anchors.rightMargin = 10
                     background.color = "#00A3FF"
@@ -71,7 +88,14 @@ Item{
                     background.opacity = 0.12
                 }
             }
+            property bool isForwConn_: isForwardConnected
+            onIsForwConn_Changed: background.init()
 
+            TapHandler{
+                onTapped: {
+                    console.log(fromID, isBackConnected, isForwardConnected)
+                }
+            }
             Text {
                 id: messageText
                 anchors.centerIn: parent

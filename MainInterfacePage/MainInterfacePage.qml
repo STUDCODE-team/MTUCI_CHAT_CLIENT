@@ -23,9 +23,9 @@ Rectangle {
         }
     }
 
-    LeftPanel{
-        id: menuBar
-    }
+//    LeftPanel{
+//        id: menuBar
+//    }
 
     SearchBlock {id: searchBlock}
     ///
@@ -42,13 +42,13 @@ Rectangle {
 
     SeparatorLine {
         id: leftSep
-
+//visible: false
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: chatList.left
     }
     SeparatorLine {
         id: rightSep
-
+//        visible: false
         anchors.verticalCenter: parent.verticalCenter
         anchors.left: chatList.right
     }
@@ -79,8 +79,9 @@ Rectangle {
 
     TopMenu {
         id: topMenu
+        title: chatList.getChatTitle()
+        extraInfo: chatList.getExtraChatInfo()
     }
-
     BottomMenu {
         id: bottomMenu
     }

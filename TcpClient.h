@@ -27,7 +27,11 @@ public slots:
     }
     void getMessages(QString chatID)
     {
-        send("getMessages:" + chatID.toUtf8() + ":" + QString::number(userID).toUtf8());
+        send("getMessages:" + chatID.toUtf8());
+    }
+    void sendMessage(QString chatID, QString message)
+    {
+        send("newMessage:" + chatID.toUtf8() + ":" + QString::number(userID).toUtf8() + ":" + message.toUtf8());
     }
 
 private slots:

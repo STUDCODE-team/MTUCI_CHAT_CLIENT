@@ -16,6 +16,10 @@ Rectangle {
     readonly property color borderColor: "#00D6C9"
 
     readonly property string text: input.text
+    signal enter()
+    function clear() {
+        input.clear()
+    }
 
     width: inputWidth
     height: inputHeight
@@ -35,6 +39,7 @@ Rectangle {
         font.pointSize: 16
         placeholderText: placeHolder
         color: borderColor
+        onAccepted: enter()
 
         background: Item{}
     }

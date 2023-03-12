@@ -12,6 +12,7 @@ ApplicationWindow {
     visible: true
     title: qsTr("MTUCI Chat")
 
+
     ///
     ///\brief loadLastSession
     /// Функция вызывается при запуске приложения. Проверяет, был ли авторизован пользователь.

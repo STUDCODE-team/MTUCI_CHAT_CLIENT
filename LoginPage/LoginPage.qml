@@ -35,12 +35,14 @@ Page {
                 id: login
                 placeHolder: "Логин"
                 Layout.bottomMargin: 5
+                onEnter: loginButton.clicked()
             }
             InputField {
                 id: password
                 placeHolder: "Пароль"
                 isPassword: true
                 Layout.bottomMargin: 16
+                onEnter: loginButton.clicked()
             }
             PushButton {
                 id: loginButton

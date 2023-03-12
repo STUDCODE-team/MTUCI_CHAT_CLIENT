@@ -7,16 +7,15 @@ import QtGraphicalEffects 1.15
 
 Item {
     id: topMenu
-    function setData(userName, info){
-        chatUserName.text = userName
-        chatUserOnlineInfo.text = info
-    }
-
-    width: 584
+    property string title: ""
+    property string extraInfo: ""
+//    function setData(userName, info){
+//        chatUserName.text = userName
+//        chatUserOnlineInfo.text = info
+//    }
     height: 58
-
     anchors.left: rightSep.right
-
+    anchors.right: parent.right
     Item {
         id: infoUser
 
@@ -27,26 +26,25 @@ Item {
         Text {
             id: chatUserName
 
-            text: "Игнатий Глушков"
+            text: title
             font.pointSize: 16
             color: "white"
 
             anchors.leftMargin: 36
             anchors.left: parent.left
-            anchors.top: parent.top
+            anchors.verticalCenter: parent.verticalCenter
         }
 
         Text {
             id: chatUserOnlineInfo
-            text: "был(а) 8 минут назад"
+            text: extraInfo
             font.pointSize: 10
             color: "white"
             opacity: 0.7
 
-            anchors.leftMargin: 36
-            anchors.left: parent.left
-            anchors.bottom: parent.bottom
-            anchors.bottomMargin: 3
+            anchors.verticalCenter: chatUserName.verticalCenter
+            anchors.left: chatUserName.right
+            anchors.leftMargin: 20
         }
     }
 

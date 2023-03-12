@@ -27,6 +27,10 @@ Item {
         anchors.left: clipPaper.right
         anchors.verticalCenter: parent.verticalCenter
         inputWidth: parent.width - clipPaper.width - microphone.width - smile.width - smileRightMargin - microphoneRightMargin - 3
+        onEnter: {
+            backend.sendMessage(chatList.getChatID(), writeMessage.text)
+            clear()
+        }
     }
 
     Image {

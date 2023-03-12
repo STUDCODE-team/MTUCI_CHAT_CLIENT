@@ -55,6 +55,20 @@ public slots:
         emit clearMessages();
         client.getMessages(chatID);
     }
+    ///
+    ///
+    ///
+    QString myID()
+    {
+        return QString::number(client.userID);
+    }
+    ///
+    ///
+    ///
+    void sendMessage(QString chatID, QString message)
+    {
+        client.sendMessage(chatID, message);
+    }
 
 signals:
     ///

@@ -14,9 +14,20 @@ ListView {
     anchors.left: menuBar.right
     clip: true
 
+    function getChatTitle() {
+        return chatsModel.get(currentIndex).userName
+    }
+
+    function getExtraChatInfo(){
+        return chatsModel.get(currentIndex).userName
+    }
+
+    function getChatID(){
+        return chatsModel.get(currentIndex).chatID
+    }
+
     onCurrentIndexChanged: {
-        var chatId = chatsModel.get(currentIndex).chatID
-        backend.getMessages(chatId)
+        backend.getMessages(getChatID())
     }
 
     highlight: Rectangle {
