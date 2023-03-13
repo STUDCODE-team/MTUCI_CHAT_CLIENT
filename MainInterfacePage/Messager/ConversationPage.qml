@@ -16,8 +16,8 @@ Item{
         function onClearMessages() {messagesModel.clear()}
         function onAddMessage(data) {
             var count = messagesModel.count
-            var lastItem = messagesModel.get(messagesModel.count-1)
-            messagesModel.append({
+            var lastItem = messagesModel.get(0)
+            messagesModel.insert(0, {
                                      "message": data[0],
                                      "fromID": data[1],
                                      "fromName": data[2],
@@ -26,9 +26,9 @@ Item{
                                      "isMyMessage": data[1] === backend.myID(),
                                      "isBackConnected": count > 0 ? data[1] === lastItem.fromID : false,
                                      "isForwardConnected": false
-                                 })
+                                })
             if (count > 0)
-                lastItem.isForwardConnected = messagesModel.get(messagesModel.count-1).isBackConnected
+                lastItem.isForwardConnected = messagesModel.get(0).isBackConnected
         }
     }
 
@@ -38,10 +38,22 @@ Item{
 
     ListView{
         id: view
+        verticalLayoutDirection: ListView.BottomToTop
+//        cacheBuffer: 20
+////        flickDeceleration: -10000
+////        maximumFlickVelocity: 1
+//        onVerticalVelocityChanged: {
+//            console.log(verticalVelocity)
+//        }
+
         anchors.fill: parent
         model:messagesModel
         spacing: 3
         clip: true
+
+        onCountChanged: {
+//            view.currentIndex = count - 1
+        }
 
         delegate: Item {
             id: messageDelegate

@@ -36,7 +36,9 @@ Item {
         anchors.verticalCenter: parent.verticalCenter
         inputWidth: parent.width - clipPaper.width - microphone.width - smile.width - smileRightMargin - microphoneRightMargin - 3
         onEnter: {
-            backend.sendMessage(chatList.getChatID(), writeMessage.text)
+            var message = writeMessage.text.trim()
+            if (message.length > 0)
+                backend.sendMessage(chatList.getChatID(), message)
             clear()
         }
     }
