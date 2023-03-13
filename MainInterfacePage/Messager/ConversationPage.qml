@@ -50,9 +50,31 @@ Item{
         model:messagesModel
         spacing: 3
         clip: true
+        interactive: false
+        MouseArea {
+            anchors.fill: parent
+            onWheel: {
+                var maxPos = 1 - scroll.visualSize
+
+                if (scroll.position <= 0 && wheel.pixelDelta.y > 0) {
+                    scroll.position = 0
+                    return
+                }
+                if (scroll.position >= maxPos && wheel.pixelDelta.y < 0) {
+                    scroll.position = maxPos
+                    return
+                }
+                scroll.position -= wheel.pixelDelta.y/1000
+            }
+        }
+
+        ScrollBar.vertical: ScrollBar{
+            id: scroll
+            stepSize: 0.0001
+        }
 
         onCountChanged: {
-//            view.currentIndex = count - 1
+            view.currentIndex = 0
         }
 
         delegate: Item {
