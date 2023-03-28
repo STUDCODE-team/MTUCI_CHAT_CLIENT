@@ -3,16 +3,21 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtGraphicalEffects 1.15
 
-
 ListView {
     id: chatList
 
     width: 258
     height: parent.height - searchBlock.height
-    spacing: 5
     anchors.bottom: parent.bottom
     anchors.left: menuBar.right
     clip: true
+
+    Menu {
+       id: contextMenu
+       MenuItem {
+           text: qsTr('Delete')
+       }
+   }
 
     function getChatTitle() {
         return chatsModel.get(currentIndex).userName
@@ -59,7 +64,7 @@ ListView {
         property var isCurrent: ListView.isCurrentItem
 
         width: parent.width
-        height: 50
+        height: 65
 
         Rectangle {
             anchors.fill: parent
@@ -75,40 +80,52 @@ ListView {
             anchors.leftMargin: 12
         }
         Text {
+            id: _userName
             text: userName
             color: "white"
+            font.pointSize: 14
             anchors.left: useravatar.right
-            anchors.top: parent.top
+            anchors.top: useravatar.top
             anchors.leftMargin: 10
-            anchors.topMargin: 10
         }
         Text {
             text: lastMessage
             color: "white"
             opacity: 0.7
-            font.pointSize: 10
+            font.pointSize: 11
             anchors.left: useravatar.right
-            anchors.top: parent.top
+            anchors.top: _userName.bottom
             anchors.leftMargin: 10
-            anchors.topMargin: 30
+            anchors.topMargin: 5
         }
         Text {
             text: lastMessageTime
             color: "white"
             opacity: 0.7
-            anchors.top: parent.top
-            anchors.topMargin: 12
-            anchors.right: parent.right
+            anchors.left: _userName.right
+            anchors.verticalCenter: _userName.verticalCenter
             anchors.rightMargin: 10
+            anchors.leftMargin: 5
             font.pointSize: 10
         }
         MouseArea {
             id: itemMouseArea
+            acceptedButtons: Qt.LeftButton | Qt.RightButton
 
             anchors.fill: parent
-            onClicked: view.currentIndex = model.index
             hoverEnabled: true
             cursorShape: Qt.WhatsThisCursor
+            propagateComposedEvents: true
+            onClicked: {
+                if (mouse.button & Qt.LeftButton) {
+                    view.currentIndex = model.index
+                }
+            }
+            onReleased: {
+                if (mouse.button & Qt.RightButton) {
+                    contextMenu.popup()
+                }
+            }
         }
     }
 }
