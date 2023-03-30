@@ -93,7 +93,7 @@ ListView {
             anchors.topMargin: 30
         }
         Text {
-            text: lastMessageTime
+            text: parseMessageTime(lastMessageTime)
             color: "white"
             opacity: 0.7
             anchors.top: parent.top

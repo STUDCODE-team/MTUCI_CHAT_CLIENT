@@ -16,23 +16,16 @@ public:
     explicit TcpClient();
     int userID = -1;
     void connectToHost(const QString ip, const QString port);
-
+    void closeSocket();
+    bool netAvailable = true;
 public slots:
     void send(const QByteArray &message);
-    void login(const QString& login, const QByteArray& hashedPassword){
-        send("login:" + login.toUtf8() + "|" + hashedPassword);
-    }
-    void getChatList(){
-        send("getChatList:" + QString::number(userID).toUtf8());
-    }
-    void getMessages(QString chatID)
-    {
-        send("getMessages:" + chatID.toUtf8());
-    }
-    void sendMessage(QString chatID, QString message)
-    {
-        send("newMessage:" + chatID.toUtf8() + ":" + QString::number(userID).toUtf8() + ":" + message.toUtf8());
-    }
+    void login(const QString& login, const QByteArray& hashedPassword);
+    void getChatList();
+    void getMessages(QString chatID);
+    void sendMessage(QString chatID, QString message);
+    QTcpSocket::SocketState getSocketState();
+    void reconnect();
 
 private slots:
     void onReadyRead();
@@ -41,29 +34,24 @@ signals:
     ///
     /// \brief loginSucceed
     ///
+    void socketConnected();
     void loginSucceed();
     void loginFailed();
 
     void newChatListElement(QStringList chatData);
     void addMessage(QStringList messageData);
 
+
 private:
     QTcpSocket _socket;
     QString ip;
     QString port;
     QTimer reconn_timer;
-    void reconnect();
+
     void reply(const QByteArray &rep);
 
-    QString messageType(QString message){
-        return message.split(":")[0];
-    }
-    QString messageBody(QString message){
-        QStringList m = message.split(":");
-        m.removeFirst();
-        return m.join(":");
-    }
-
+    QString messageType(QString message);
+    QString messageBody(QString message);
 };
 
 #endif // TCPCLIENT_H

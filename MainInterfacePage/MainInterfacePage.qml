@@ -23,6 +23,10 @@ Rectangle {
         }
     }
 
+    function parseMessageTime(time_){
+        return time_.split(' ')[1].split(':')[0] + ":" + time_.split(' ')[1].split(':')[1]
+    }
+
 //    LeftPanel{
 //        id: menuBar
 //    }
