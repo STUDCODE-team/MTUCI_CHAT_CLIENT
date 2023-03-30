@@ -11,8 +11,10 @@ Cache::Cache()
 
 void Cache::setLogin(LoginData loginData)
 {
+    if(loginData.first == "" || loginData.second == "")
+        return;
     QStringList s = {loginData.first, QString::fromLocal8Bit(loginData.second)};
-    cache.insert("loginData", QVariant::fromValue(s));
+    cache["loginData"] = QVariant::fromValue(s);
 }
 
 bool Cache::isLogin(){
@@ -30,7 +32,7 @@ QByteArray Cache::getPassword(){
 void Cache::saveCache()
 {
     //autologin
-    cache.remove("loginData");
+//    cache.remove("loginData");
     settings->setValue("cache", cache);
     settings->sync();
 }

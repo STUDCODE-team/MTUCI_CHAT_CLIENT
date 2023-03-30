@@ -19,8 +19,8 @@ Backend::Backend(QGuiApplication *app)
     connect(&client, &TcpClient::newChatListElement, this, &Backend::newChatListElement);
     connect(&client, &TcpClient::addMessage, this, &Backend::addMessage);
 
-    client.connectToHost("localhost", "30391");
-//    client.connectToHost("nastie.online", "30391");
+//    client.connectToHost("localhost", "30391");
+    client.connectToHost("nastie.online", "30391");
 }
 
 bool Backend::isLastSessionSaved() {return false;}

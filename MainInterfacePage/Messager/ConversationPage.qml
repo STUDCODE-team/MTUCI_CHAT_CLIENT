@@ -40,18 +40,35 @@ Item{
     ListView{
         id: view
         verticalLayoutDirection: ListView.BottomToTop
-//        cacheBuffer: 20
-////        flickDeceleration: -10000
-////        maximumFlickVelocity: 1
-//        onVerticalVelocityChanged: {
-//            console.log(verticalVelocity)
-//        }
+
+//        flickDeceleration: -10000000
+//        maximumFlickVelocity: 1
+        interactive: false
+        ScrollBar.vertical: ScrollBar{
+        id: scroll
+        stepSize: 0.0001
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onWheel: {
+                if(wheel.pixelDelta.y < 0) {
+                        scroll.position -= wheel.pixelDelta.y*scroll.stepSize * 3
+                        scroll.increase()
+                }
+
+                if(wheel.pixelDelta.y > 0) {
+                    scroll.position -= wheel.pixelDelta.y*scroll.stepSize * 3
+                        scroll.decrease()
+                }
+            }
+        }
 
         anchors.fill: parent
         model:messagesModel
         spacing: 3
         clip: true
-        interactive: false
+
 
         Menu {
             id: contextMenu
@@ -63,29 +80,6 @@ Item{
             }
 
         }
-        MouseArea {
-            anchors.fill: parent
-            onWheel: {
-                var maxPos = 1 - scroll.visualSize
-
-                if (scroll.position <= 0 && wheel.pixelDelta.y > 0) {
-                    scroll.position = 0
-                    return
-                }
-                if (scroll.position >= maxPos && wheel.pixelDelta.y < 0) {
-                    scroll.position = maxPos
-                    return
-                }
-                for(let i = 0; i < 100; i++)
-                    scroll.position -= wheel.pixelDelta.y/100000
-            }
-        }
-
-        ScrollBar.vertical: ScrollBar{
-            id: scroll
-            stepSize: 0.00001
-        }
-
         onCountChanged: {
             view.currentIndex = 0
         }
@@ -139,13 +133,6 @@ Item{
             property bool isForwConn_: isForwardConnected
             onIsForwConn_Changed: background.init()
 
-            TapHandler{
-                onTapped: {
-                    console.log(fromID, isBackConnected, isForwardConnected)
-                }
-            }
-
-
             Text {
                 id: messageText
                 anchors.centerIn: parent
@@ -160,6 +147,7 @@ Item{
                     }
                 }
             }
+
             Text {
                 id: messageTime
                 anchors.right: messageText.right
