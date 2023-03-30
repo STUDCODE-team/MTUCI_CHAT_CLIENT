@@ -51,22 +51,20 @@ Item{
         model:messagesModel
         spacing: 3
         clip: true
-//        interactive: false
-        MouseArea {
-            anchors.fill: parent
-            onWheel: {
-                var maxPos = 1 - scroll.visualSize
-                if (scroll.position <= 0 && wheel.pixelDelta.y > 0) {
-                    scroll.position = 0
-                    return
-                }
-                if (scroll.position >= maxPos && wheel.pixelDelta.y < 0) {
-                    scroll.position = maxPos
-                    return
-                }
-                scroll.position -= wheel.pixelDelta.y/1000
+        interactive: false
+
+        Menu {
+            id: contextMenu
+            MenuItem {
+                text: qsTr('Изменить')
             }
+            MenuItem {
+                text: qsTr('Удалить')
+            }
+
         }
+
+
 
         ScrollBar.vertical: ScrollBar{
             id: scroll
@@ -99,6 +97,7 @@ Item{
                     if(isMyMessage) corner.anchors.right = background.right
                     else            corner.anchors.left  = background.left
                 }
+
 
                 Component{
                     id: corner
@@ -154,6 +153,39 @@ Item{
                 text: "<small><i>" + parseMessageTime(time)
                 font.pointSize: 13
                 color: "white"
+            }
+
+            MouseArea {
+                id: itemMouseArea
+                acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.WhatsThisCursor
+                propagateComposedEvents: true
+
+                onReleased: {
+                    if (mouse.button & Qt.RightButton) {
+                        contextMenu.popup()
+                    }
+                }
+            }
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onWheel: {
+                var maxPos = 1 - scroll.visualSize
+
+                if (scroll.position <= 0 && wheel.pixelDelta.y > 0) {
+                    scroll.position = 0
+                    return
+                }
+                if (scroll.position >= maxPos && wheel.pixelDelta.y < 0) {
+                    scroll.position = maxPos
+                    return
+                }
+                scroll.position -= wheel.pixelDelta.y/1000
             }
         }
     }
