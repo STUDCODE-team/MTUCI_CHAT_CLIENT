@@ -63,12 +63,27 @@ Item{
             }
 
         }
+        MouseArea {
+            anchors.fill: parent
+            onWheel: {
+                var maxPos = 1 - scroll.visualSize
 
-
+                if (scroll.position <= 0 && wheel.pixelDelta.y > 0) {
+                    scroll.position = 0
+                    return
+                }
+                if (scroll.position >= maxPos && wheel.pixelDelta.y < 0) {
+                    scroll.position = maxPos
+                    return
+                }
+                for(let i = 0; i < 100; i++)
+                    scroll.position -= wheel.pixelDelta.y/100000
+            }
+        }
 
         ScrollBar.vertical: ScrollBar{
             id: scroll
-            stepSize: 0.0001
+            stepSize: 0.00001
         }
 
         onCountChanged: {
@@ -169,23 +184,6 @@ Item{
                         contextMenu.popup()
                     }
                 }
-            }
-        }
-
-        MouseArea {
-            anchors.fill: parent
-            onWheel: {
-                var maxPos = 1 - scroll.visualSize
-
-                if (scroll.position <= 0 && wheel.pixelDelta.y > 0) {
-                    scroll.position = 0
-                    return
-                }
-                if (scroll.position >= maxPos && wheel.pixelDelta.y < 0) {
-                    scroll.position = maxPos
-                    return
-                }
-                scroll.position -= wheel.pixelDelta.y/1000
             }
         }
     }
