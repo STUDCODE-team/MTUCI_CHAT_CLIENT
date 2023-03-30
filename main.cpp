@@ -2,14 +2,11 @@
 #include <QQmlApplicationEngine>
 #include <QQmlContext>
 #include "backend.h"
-#include <QFont>
-#include "cache.h"
-#include <QNetworkConfigurationManager>
-#include <QNetworkAccessManager>
-#include "networkflow.h"
+#include "qfont.h"
 
 int main(int argc, char *argv[])
 {
+
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 #endif
@@ -23,23 +20,12 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
 
-    NetworkFlow net;
-    net.loadProxyPack();
 
-    Backend *back = new Backend(&app);
-
-    QObject::connect(&net, &NetworkFlow::netClosed, back, &Backend::forceSocketDrop);
-    QObject::connect(&net, &NetworkFlow::netAvailable, back, &Backend::forceSocketConnect);
-
-    net.monitorNetwork();
-    engine.rootContext()->setContextProperty("backend", back);
-
+    engine.rootContext()->setContextProperty("backend", new Backend());
     engine.load(url);
 
     QFont serifFont(":/OpenSans-Regular.ttf");
     QGuiApplication::setFont(serifFont);
 
-
     return app.exec();
 }
-

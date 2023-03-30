@@ -1,7 +1,4 @@
-#include <sys/socket.h>
 #include "TcpClient.h"
-#include <QNetworkConfigurationManager>
-
 
 TcpClient::TcpClient()
 {
@@ -10,14 +7,12 @@ TcpClient::TcpClient()
     connect(&_socket, &QTcpSocket::stateChanged, this, [&]()
     {
         reconn_timer.stop();
-
-            if(_socket.state() == QTcpSocket::ConnectedState){
-                #ifdef QT_DEBUG
-                    qDebug() << "[SOCKET]: Подключено к серверу";
-                #endif
-                emit socketConnected();
-            }
-        if (_socket.state() == QTcpSocket::UnconnectedState && netAvailable)
+        #ifdef QT_DEBUG
+            if(_socket.state() == QTcpSocket::ConnectedState)
+                qDebug() << "[SOCKET]: Подключено к серверу";
+        #endif
+        if (_socket.state() == QTcpSocket::ConnectingState
+            || _socket.state() == QTcpSocket::UnconnectedState)
         {
             reconn_timer.start(3000);
             #ifdef QT_DEBUG
@@ -34,15 +29,10 @@ void TcpClient::connectToHost(const QString ip, const QString port)
     _socket.connectToHost(ip, port.toUInt());
 }
 
-void TcpClient::closeSocket(){
-    _socket.close();
-}
-
 void TcpClient::reconnect()
-{   if(_socket.state() != QTcpSocket::UnconnectedState){
-        _socket.disconnectFromHost();
-        _socket.waitForDisconnected(300);
-    }
+{
+    _socket.disconnectFromHost();
+    _socket.waitForDisconnected(300);
     _socket.connectToHost(ip, port.toUInt());
 }
 
@@ -56,32 +46,9 @@ void TcpClient::send(const QByteArray &message)
 #endif
 }
 
-void TcpClient::login(const QString &login, const QByteArray &hashedPassword){
-    send("login:" + login.toUtf8() + "|" + hashedPassword);
-}
-
-void TcpClient::getChatList(){
-    send("getChatList:" + QString::number(userID).toUtf8());
-}
-
-void TcpClient::getMessages(QString chatID)
-{
-    send("getMessages:" + chatID.toUtf8());
-}
-
-void TcpClient::sendMessage(QString chatID, QString message)
-{
-    send("newMessage:" + chatID.toUtf8() + ":" + QString::number(userID).toUtf8() + ":" + message.toUtf8());
-}
-
-QAbstractSocket::SocketState TcpClient::getSocketState()
-{
-    return _socket.state();
-}
-
 void TcpClient::onReadyRead()
 {
-    //    replies are separatied with '#'
+//    replies are separatied with '#'
     const QList<QByteArray> m_list = _socket.readAll().split('#');
     // parsing reply to single ones
     foreach(QByteArray message, m_list)
@@ -93,7 +60,7 @@ void TcpClient::onReadyRead()
 void TcpClient::reply(const QByteArray &rep)
 {
 #ifdef QT_DEBUG
-        qInfo() << QTime::currentTime().toString() << "GET: \t" << rep.data();
+        qInfo() << QTime::currentTime().toString() << "GET: \t" << rep;
 #endif
     if(messageType(rep) == "login")
     {
@@ -120,15 +87,6 @@ void TcpClient::reply(const QByteArray &rep)
         emit addMessage(info);
         return;
     }
-}
 
-QString TcpClient::messageType(QString message){
-    return message.split(":")[0];
-}
-
-QString TcpClient::messageBody(QString message){
-    QStringList m = message.split(":");
-    m.removeFirst();
-    return m.join(":");
 }
 

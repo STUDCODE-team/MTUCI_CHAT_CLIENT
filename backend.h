@@ -6,19 +6,14 @@
 #include "hash.h"
 #include "TcpClient.h"
 #include <QTextCodec>
-#include <QGuiApplication>
-#include "cache.h"
 
 class Backend : public QObject
 {
     Q_OBJECT
 public:
-    explicit Backend(QGuiApplication *app);
-
-private:
+    explicit Backend();
     TcpClient client;
-    Cache cache;
-    QPair<QString, QByteArray> lastLoginData;
+
 public slots:
     ///
     /// \brief isUserAlreadyAuthorized
@@ -26,53 +21,54 @@ public slots:
     /// о сессии пользователя, иначе false.
     /// \return
     ///
-    bool isLastSessionSaved();
+    bool isLastSessionSaved() {return false;}
     ///
     /// \brief getLastSession
     /// Функция возвращает информацию о прошлой сессии в виде словаря.
     /// Вернет пустой словарь, если нет сохраненной сессии.
     /// \return
     ///
-    QVariant getLastSession();
+    QVariant getLastSession() {return QVariant(3);}
     ///
     /// \brief implicitLogin
     /// Функция производит неявную авторизацию пользователя
     /// по данным из последней сессии.
     /// \return
     ///
-    void implicitLogin();
+    void implicitLogin(){}
     ///
     /// \brief login
     /// Функция производит явную авторизацию
     /// \return
     ///
-    void login(QString login, QString password);
+    void login(QString login, QString password)
+    {
+        QByteArray salt = Hash::getSalt(login).toHex();
+        QByteArray hashedPassword = Hash::password(password, salt).toHex();
+        client.login(login, hashedPassword);
+    }
     ///
     ///
     ///
-    ///
-    ///
-    void getMessages(QString chatID);
-    ///
-    ///
-    ///
-    ///
-    ///
-    QString myID();
+    void getMessages(QString chatID)
+    {
+        emit clearMessages();
+        client.getMessages(chatID);
+    }
     ///
     ///
     ///
+    QString myID()
+    {
+        return QString::number(client.userID);
+    }
     ///
     ///
-    void sendMessage(QString chatID, QString message);
     ///
-    /// \brief forceSocketDrop
-    ///
-    ///
-    ///
-    void forceSocketDrop();
-    void forceSocketConnect();
-
+    void sendMessage(QString chatID, QString message)
+    {
+        client.sendMessage(chatID, message);
+    }
 
 signals:
     ///

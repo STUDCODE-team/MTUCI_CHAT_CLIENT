@@ -27,7 +27,6 @@ Item{
                                      "isBackConnected": count > 0 ? data[1] === lastItem.fromID : false,
                                      "isForwardConnected": false
                                 })
-
             if (count > 0)
                 lastItem.isForwardConnected = messagesModel.get(0).isBackConnected
         }
@@ -79,7 +78,7 @@ Item{
 
         delegate: Item {
             id: messageDelegate
-            width: messageText.width   + 20
+            width: messageText.width + 20
             height: messageText.height + 10
 
             Rectangle{
@@ -130,22 +129,20 @@ Item{
                     console.log(fromID, isBackConnected, isForwardConnected)
                 }
             }
-
-
             Text {
                 id: messageText
                 anchors.centerIn: parent
-                textFormat: Text.PlainText
-                text: message + "       ⠀"
+                text: message
                 font.pointSize: 13
                 color: "white"
+                wrapMode: Text.WordWrap
                 onContentWidthChanged: {
                     if(contentWidth > messagesField.width * 0.4){
-                        wrapMode = Text.WordWrap
                         width = messagesField.width * 0.4
                     }
                 }
             }
+<<<<<<< HEAD
             Text {
                 id: messageTime
                 anchors.right: messageText.right
@@ -154,6 +151,40 @@ Item{
                 text: "<small><i>" + parseMessageTime(time)
                 font.pointSize: 13
                 color: "white"
+=======
+
+            MouseArea {
+                id: itemMouseArea
+                acceptedButtons: Qt.LeftButton | Qt.RightButton
+
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.WhatsThisCursor
+                propagateComposedEvents: true
+
+                onReleased: {
+                    if (mouse.button & Qt.RightButton) {
+                        contextMenu.popup()
+                    }
+                }
+            }
+        }
+
+        MouseArea {
+            anchors.fill: parent
+            onWheel: {
+                var maxPos = 1 - scroll.visualSize
+
+                if (scroll.position <= 0 && wheel.pixelDelta.y > 0) {
+                    scroll.position = 0
+                    return
+                }
+                if (scroll.position >= maxPos && wheel.pixelDelta.y < 0) {
+                    scroll.position = maxPos
+                    return
+                }
+                scroll.position -= wheel.pixelDelta.y/1000
+>>>>>>> parent of dd2c41f... Merge branch 'ui' into alfa_version
             }
         }
     }

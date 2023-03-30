@@ -7,10 +7,8 @@ QT += quick network
 SOURCES += \
         TcpClient.cpp \
         backend.cpp \
-        cache.cpp \
         hash.cpp \
-        main.cpp \
-        networkflow.cpp
+        main.cpp
 
 RESOURCES += qml.qrc
 
@@ -28,8 +26,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     TcpClient.h \
     backend.h \
-    cache.h \
-    hash.h \
-    networkflow.h
+    hash.h
 
 DISTFILES +=
