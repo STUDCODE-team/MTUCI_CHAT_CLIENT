@@ -27,6 +27,7 @@ Item{
                                      "isBackConnected": count > 0 ? data[1] === lastItem.fromID : false,
                                      "isForwardConnected": false
                                 })
+
             if (count > 0)
                 lastItem.isForwardConnected = messagesModel.get(0).isBackConnected
         }
@@ -76,7 +77,7 @@ Item{
 
         delegate: Item {
             id: messageDelegate
-            width: messageText.width + 20
+            width: messageText.width   + 20
             height: messageText.height + 10
 
             Rectangle{
@@ -128,18 +129,30 @@ Item{
                     console.log(fromID, isBackConnected, isForwardConnected)
                 }
             }
+
+
             Text {
                 id: messageText
                 anchors.centerIn: parent
-                text: message
+                textFormat: Text.PlainText
+                text: message + "       ⠀"
                 font.pointSize: 13
                 color: "white"
-                wrapMode: Text.WordWrap
                 onContentWidthChanged: {
                     if(contentWidth > messagesField.width * 0.4){
+                        wrapMode = Text.WordWrap
                         width = messagesField.width * 0.4
                     }
                 }
+            }
+            Text {
+                id: messageTime
+                anchors.right: messageText.right
+                anchors.bottom: messageText.bottom
+                textFormat: Text.RichText
+                text: "<small><i>" + parseMessageTime(time)
+                font.pointSize: 13
+                color: "white"
             }
 
             MouseArea {
