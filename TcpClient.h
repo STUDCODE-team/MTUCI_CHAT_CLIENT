@@ -27,6 +27,8 @@ public slots:
     QTcpSocket::SocketState getSocketState();
     void reconnect();
 
+    void getSessionData(QString chatID);
+
 private slots:
     void onReadyRead();
 
@@ -39,7 +41,8 @@ signals:
     void loginFailed();
 
     void newChatListElement(QStringList chatData);
-    void addMessage(QStringList messageData);
+    void newMessage(QStringList messageData);
+    void newSessionData(QStringList sessionData);
 
 
 private:

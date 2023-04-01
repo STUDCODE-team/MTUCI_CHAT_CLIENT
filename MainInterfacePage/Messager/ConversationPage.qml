@@ -14,7 +14,7 @@ Item{
     Connections {
         target: backend
         function onClearMessages() {messagesModel.clear()}
-        function onAddMessage(data) {
+        function onNewMessage(data) {
             var count = messagesModel.count
             var lastItem = messagesModel.get(0)
             messagesModel.insert(0, {
@@ -41,34 +41,33 @@ Item{
         id: view
         verticalLayoutDirection: ListView.BottomToTop
 
-//        flickDeceleration: -10000000
-//        maximumFlickVelocity: 1
+        flickDeceleration: -10000000
+        maximumFlickVelocity: 1
         interactive: false
-        ScrollBar.vertical: ScrollBar{
-        id: scroll
-        stepSize: 0.0001
-        }
 
         MouseArea {
             anchors.fill: parent
             onWheel: {
                 if(wheel.pixelDelta.y < 0) {
-                        scroll.position -= wheel.pixelDelta.y*scroll.stepSize * 3
-                        scroll.increase()
+                    scroll.position -= wheel.pixelDelta.y*scroll.stepSize * 3
+                    scroll.increase()
                 }
-
                 if(wheel.pixelDelta.y > 0) {
                     scroll.position -= wheel.pixelDelta.y*scroll.stepSize * 3
-                        scroll.decrease()
+                    scroll.decrease()
                 }
             }
         }
-
+        ScrollBar.vertical: ScrollBar{
+            id: scroll
+            smooth: true
+            snapMode: ScrollBar.NoSnap
+            stepSize: 0.0001
+        }
         anchors.fill: parent
         model:messagesModel
-        spacing: 3
+        spacing: 2
         clip: true
-
 
         Menu {
             id: contextMenu
@@ -78,7 +77,6 @@ Item{
             MenuItem {
                 text: qsTr('Удалить')
             }
-
         }
         onCountChanged: {
             view.currentIndex = 0
@@ -106,7 +104,6 @@ Item{
                     if(isMyMessage) corner.anchors.right = background.right
                     else            corner.anchors.left  = background.left
                 }
-
 
                 Component{
                     id: corner

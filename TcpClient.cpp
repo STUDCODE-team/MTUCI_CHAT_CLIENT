@@ -46,10 +46,15 @@ void TcpClient::reconnect()
     _socket.connectToHost(ip, port.toUInt());
 }
 
+void TcpClient::getSessionData(QString chatID)
+{
+    send("getSessionData:" + chatID.toUtf8());
+}
+
 void TcpClient::send(const QByteArray &message)
 {
     _socket.flush();
-    _socket.write(message);
+    _socket.write(message + "#");
 
 #ifdef QT_DEBUG
         qInfo() << QTime::currentTime().toString() << "SEND: \t" << message;
@@ -117,7 +122,13 @@ void TcpClient::reply(const QByteArray &rep)
     if(messageType(rep) == "Message")
     {
         QStringList info = messageBody(rep).split("|");
-        emit addMessage(info);
+        emit newMessage(info);
+        return;
+    }
+    if(messageType(rep) == "sessionData")
+    {
+        QStringList info = messageBody(rep).split("|");
+        emit newSessionData(info);
         return;
     }
 }

@@ -32,7 +32,7 @@ QByteArray Cache::getPassword(){
 void Cache::saveCache()
 {
     //autologin
-//    cache.remove("loginData");
+    cache.remove("loginData");
     settings->setValue("cache", cache);
     settings->sync();
 }

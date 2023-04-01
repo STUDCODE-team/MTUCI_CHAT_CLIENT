@@ -72,6 +72,7 @@ public slots:
     ///
     void forceSocketDrop();
     void forceSocketConnect();
+    void getSessionData(QString chatID);
 
 
 signals:
@@ -84,7 +85,9 @@ signals:
 
     void newChatListElement(QStringList chatData);
     void clearMessages();
-    void addMessage(QStringList messageData);
+    void newMessage(QStringList messageData);
+
+    void newSessionData(QStringList sessionData);
 };
 
 #endif // BACKEND_H

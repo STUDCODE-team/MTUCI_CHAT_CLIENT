@@ -87,7 +87,7 @@ Rectangle {
     TopMenu {
         id: topMenu
         title: chatList.getChatTitle()
-        extraInfo: chatList.getExtraChatInfo()
+        extraInfo: chatList.currentChatSessionTime
     }
     BottomMenu {
         id: bottomMenu

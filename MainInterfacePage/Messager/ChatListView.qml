@@ -12,6 +12,8 @@ ListView {
     anchors.left: menuBar.right
     clip: true
 
+    property string currentChatSessionTime: ""
+
     Menu {
        id: contextMenu
        MenuItem {
@@ -22,17 +24,23 @@ ListView {
     function getChatTitle() {
         return chatsModel.get(currentIndex).userName
     }
-
-    function getExtraChatInfo(){
-        return chatsModel.get(currentIndex).userName
+    function getChatVisaviID() {
+        return chatsModel.get(currentIndex).userID
     }
+
+//    function getExtraChatInfo(){
+//        return chatsModel.get(currentIndex).userName
+//    }
 
     function getChatID(){
         return chatsModel.get(currentIndex).chatID
     }
 
+//    on
+
     onCurrentIndexChanged: {
         backend.getMessages(getChatID())
+        backend.getSessionData(getChatVisaviID())
     }
 
     highlight: Rectangle {
@@ -54,6 +62,15 @@ ListView {
                                "lastMessage":       chatData[4],
                                "lastMessageTime":   chatData[5],
                                "lastMessageID":     chatData[6]})
+        }
+        function onNewSessionData(sessionData) {
+            if (sessionData[0] === "login") {
+                currentChatSessionTime = "В сети"
+            } else if (sessionData[1] === "-1") {
+                currentChatSessionTime = "Был в сети давно"
+            } else {
+                currentChatSessionTime = "Был в сети в " + parseMessageTime(sessionData[1])
+            }
         }
     }
 

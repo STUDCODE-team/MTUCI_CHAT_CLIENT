@@ -17,7 +17,8 @@ Backend::Backend(QGuiApplication *app)
         }
     });
     connect(&client, &TcpClient::newChatListElement, this, &Backend::newChatListElement);
-    connect(&client, &TcpClient::addMessage, this, &Backend::addMessage);
+    connect(&client, &TcpClient::newMessage, this, &Backend::newMessage);
+    connect(&client, &TcpClient::newSessionData, this, &Backend::newSessionData);
 
 //    client.connectToHost("localhost", "30391");
     client.connectToHost("nastie.online", "30391");
@@ -68,5 +69,10 @@ void Backend::forceSocketConnect(){
         qDebug() << "[SOCKET]: Сеть дооступна";
         client.reconnect();
     }
+}
+
+void Backend::getSessionData(QString chatID)
+{
+    client.getSessionData(chatID);
 }
 
